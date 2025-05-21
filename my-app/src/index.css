@@ -1,1 +1,49 @@
- 
+ @media (max-width: 768px) {
+  .mblView {
+    gap: 20px;
+    height: auto !important;
+  }
+  .helo {
+     height: auto !important;
+  }
+  
+ }
+
+
+ .custom-table thead {
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+  color: black;
+  font-weight: 600;
+}
+
+.custom-table th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.custom-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.custom-table th,
+.custom-table td {
+  vertical-align: middle;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.pagination .page-link {
+  color: #000;
+}
+
+.pagination .active .page-link {
+  background-color: #00c7fe !important;
+  border-color: #00c7fe;
+  color: white;
+}
+.Payout{
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    color: black;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+}

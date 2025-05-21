@@ -4,6 +4,8 @@ import { CiMenuBurger } from "react-icons/ci";
 import './App.css'; 
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { FaUserAlt } from "react-icons/fa";
+
 const Header = ({ toggleSidebar }) => {
    const [show, setShow] = useState(false);
 
@@ -13,13 +15,13 @@ const Header = ({ toggleSidebar }) => {
     <div className=" ">
       
 
-      <div className='container-fluid pt-2 px-0 bg-danger px-0' >
-        <div className='row'>
-            <div className='col-lg-12'>
+      <div className='container-fluid   '  style={{borderBottom:'2px solid red'}} >
+        <div className='row '>
+            <div className='col-lg-12 py-2'>
                 <div className='row'>
                     <div className='col-lg-2 col-2 DesktopView1010'>
                       <div className=''> 
-                         <LuMenu  onClick={toggleSidebar}   style={{fontSize:'28px',  cursor:'pointer', }} /> 
+                         <LuMenu  onClick={toggleSidebar}   style={{fontSize:'24px',  cursor:'pointer', }} /> 
                          </div>
                           
                     </div>
@@ -27,14 +29,21 @@ const Header = ({ toggleSidebar }) => {
                        
                          <div className=' '>
 
-                       <CiMenuBurger className='mt-1'  style={{fontSize:'28px',  cursor:'pointer', }}  onClick={handleShow}/> 
+                       <CiMenuBurger className='mt-1'  style={{fontSize:'24px',  cursor:'pointer', }}  onClick={handleShow}/> 
                          </div>
                     </div>
 
-                    <div className='col-lg-8 col-sm-6 col-md-6 col-9'>
-                        <h4 className='mt-2 text-center'>Welcome Admin</h4>
+                    <div className='col-lg-8 col-sm-6 col-md-6 col-8'>
+                      <div className='text-center col-lg-8 col-md-6 d-none d-md-block'> 
+                        <span className=' text-center'>Welcome Admin</span>
+                      </div>
                     </div>
-                    <div className='col-lg-2 col-sm-6 col-md-6'> 
+                    <div className='col-lg-2 col-sm-6 col-md-6 col-2'> 
+                      <div style={{display:'flex', justifyContent:'center', }}>
+
+                         <FaUserAlt />
+                      </div>
+
                     </div>
                 </div>
          
