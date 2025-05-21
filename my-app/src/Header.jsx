@@ -13,7 +13,7 @@ const Header = ({ toggleSidebar }) => {
     <div className=" ">
       
 
-      <div className='container-fluid pt-2'>
+      <div className='container-fluid pt-2 px-0 bg-danger px-0' >
         <div className='row'>
             <div className='col-lg-12'>
                 <div className='row'>
