@@ -11,6 +11,14 @@ import AllActiveUsers from './Component/UserSections/AllActiveUsers';
 import AllinActive from './Component/UserSections/AllinActive' ;
 import BlockMember from './Component/UserSections/BlockMember' ;
 import PayoutSummary from './Component/PayoutSum/PayoutSummary' ;
+import ReferralIncome from './Component/IncomeReport/ReferralIncome'; 
+import TeamIncome from './Component/IncomeReport/TeamIncome';
+import DailyIncome from './Component/IncomeReport/DailyIncome';
+import Reward from './Component/IncomeReport/Reward'; 
+import Fund_Transfer from './Component/FundSection/Fund_Transfer';
+import AdminFundTransfer from './Component/FundSection/AdminFundTransfer';
+import DepositRequest from './Component/Deposite_Section/DepositeRequest';
+import CompleteDepositRequest from './Component/Deposite_Section/CompleteDepositRequest';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -34,6 +42,14 @@ const App = () => {
         <Route path="/activein" element={<AllinActive/>}/>
         <Route path="/blockusers" element={<BlockMember/>}/>
         <Route path="/payout" element={<PayoutSummary/>}/>
+        <Route path="/SponsorIncome" element={<ReferralIncome/>}/>
+        <Route path="/LevelIncome" element={<TeamIncome/>}/>
+        <Route path="/dailyIncome" element={<DailyIncome/>}/>
+        <Route path="/reward_income" element={<Reward/>}/>
+        <Route path="/fund_transfer" element={<Fund_Transfer/>}/>
+        <Route path="/fund-history" element={<AdminFundTransfer/>}/>
+        <Route path="/View-deposite-request" element={<DepositRequest/>}/>
+        <Route path="/Compelte-deposite-Request" element={<CompleteDepositRequest/>}/>
  
         </Routes> 
     </div>

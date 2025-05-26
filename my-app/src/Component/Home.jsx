@@ -8,8 +8,8 @@ const Home = () => {
         {/* Member Detail */}
         <div className="col-lg-4 col-md-6">
           <div className="card custom-card">
-            <div className="card-header custom-header">
-              👥 Member Detail
+            <div className=" custom-header">
+                 Member Detail
             </div>
             <div className="card-body teja  ">
               <div className='px-2'>
@@ -25,7 +25,7 @@ const Home = () => {
         {/* Withdraw Detail */}
         <div className="col-lg-4 col-md-6">
           <div className="card custom-card">
-            <div className="card-header custom-header">
+            <div className="  custom-header">
               Withdraw Detail
             </div>
             <div className="card-body teja">
@@ -40,7 +40,7 @@ const Home = () => {
         {/* User Income Detail */}
         <div className="col-lg-4 col-md-6">
           <div className="card custom-card">
-            <div className="card-header custom-header">
+            <div className=" custom-header">
               User Income Detail
             </div>
             <div className="card-body teja">
@@ -61,7 +61,7 @@ const Home = () => {
         {/* User Today Income Detail */}
         <div className="col-lg-4 col-md-6">
           <div className="card custom-card">
-            <div className="card-header custom-header">
+            <div className=" custom-header">
               User Today Income Detail
             </div>
             <div className="card-body teja">
@@ -79,7 +79,7 @@ const Home = () => {
         {/* Deposit Detail */}
         <div className="col-lg-4 col-md-6">
           <div className="card custom-card">
-            <div className="card-header custom-header">
+            <div className=" custom-header">
               Deposit Details
             </div>
             <div className="card-body teja">

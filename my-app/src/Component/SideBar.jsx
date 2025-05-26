@@ -165,10 +165,10 @@ const Sidebar = ({ collapsed }) => {
       <div
         className={`submenu-container ${openDropdown4 === 'general' && !collapsed ? 'open' : ''}`}
       >
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Referral Income</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Team Income</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Daily Income</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reward Income</div> </NavLink>
+       <NavLink to="/SponsorIncome" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Referral Income</div> </NavLink>
+       <NavLink to="/LevelIncome" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Team Income</div> </NavLink>
+       <NavLink to="/dailyIncome" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Daily Income</div> </NavLink>
+       <NavLink to="/reward_income" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reward Income</div> </NavLink>
        
       </div>
     </div> 
@@ -197,8 +197,8 @@ const Sidebar = ({ collapsed }) => {
       <div
         className={`submenu-container ${openDropdown5 === 'general' && !collapsed ? 'open' : ''}`}
       >
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Fund Transfer</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Admin History</div> </NavLink>
+       <NavLink to="/fund_transfer" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Fund Transfer</div> </NavLink>
+       <NavLink to="/fund-history" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Admin History</div> </NavLink>
        
       </div>
     </div> 
@@ -226,8 +226,8 @@ const Sidebar = ({ collapsed }) => {
       <div
         className={`submenu-container ${openDropdown6 === 'general' && !collapsed ? 'open' : ''}`}
       >
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Deposite</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Deposite</div> </NavLink>
+       <NavLink to="/View-deposite-request" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Deposite</div> </NavLink>
+       <NavLink to="/Compelte-deposite-Request" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Deposite</div> </NavLink>
        <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Deposite</div> </NavLink>
        
        
