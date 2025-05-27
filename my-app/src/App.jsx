@@ -19,6 +19,7 @@ import Fund_Transfer from './Component/FundSection/Fund_Transfer';
 import AdminFundTransfer from './Component/FundSection/AdminFundTransfer';
 import DepositRequest from './Component/Deposite_Section/DepositeRequest';
 import CompleteDepositRequest from './Component/Deposite_Section/CompleteDepositRequest';
+import FailedDepositeRequest from './Component/Deposite_Section/FailedDepositeRequest';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/fund-history" element={<AdminFundTransfer/>}/>
         <Route path="/View-deposite-request" element={<DepositRequest/>}/>
         <Route path="/Compelte-deposite-Request" element={<CompleteDepositRequest/>}/>
+        <Route path="/reject-Request" element={<FailedDepositeRequest/>}/>
  
         </Routes> 
     </div>

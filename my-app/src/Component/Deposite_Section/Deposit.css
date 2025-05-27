@@ -48,3 +48,29 @@ input::placeholder {
 .table td {
   color: #000;
 }
+.failed-deposit-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+ 
+
+.table-header {
+  background: linear-gradient(to right, #00f0ff, #00ffae);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.table-header th {
+  padding: 15px;
+}
+
+.table td {
+  color: #000;
+}

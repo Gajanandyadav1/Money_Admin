@@ -228,7 +228,7 @@ const Sidebar = ({ collapsed }) => {
       >
        <NavLink to="/View-deposite-request" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Deposite</div> </NavLink>
        <NavLink to="/Compelte-deposite-Request" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Deposite</div> </NavLink>
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Deposite</div> </NavLink>
+       <NavLink to="/reject-Request" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Deposite</div> </NavLink>
        
        
       </div>
