@@ -20,6 +20,11 @@ import AdminFundTransfer from './Component/FundSection/AdminFundTransfer';
 import DepositRequest from './Component/Deposite_Section/DepositeRequest';
 import CompleteDepositRequest from './Component/Deposite_Section/CompleteDepositRequest';
 import FailedDepositeRequest from './Component/Deposite_Section/FailedDepositeRequest';
+import PendingRequest from './Component/WithdrawSection/PendingRequest'; 
+import CompelteWithdraw from './Component/WithdrawSection/CompelteWithdraw';
+import RejectWithdraw from './Component/WithdrawSection/RejectWithdraw';
+import HelpCenter from './Component/HelpCenter_Section/HelpCenter';
+import MamberTree from './Component/Mamber/MamberTree';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -52,6 +57,11 @@ const App = () => {
         <Route path="/View-deposite-request" element={<DepositRequest/>}/>
         <Route path="/Compelte-deposite-Request" element={<CompleteDepositRequest/>}/>
         <Route path="/reject-Request" element={<FailedDepositeRequest/>}/>
+        <Route path="/withdraw_pending" element={<PendingRequest/>}/>
+        <Route path="/Compelte-Withdraw" element={<CompelteWithdraw/>}/>
+        <Route path="/reject-Withdraw" element={<RejectWithdraw/>}/>
+        <Route path="/help" element={<HelpCenter/>}/>
+        <Route path="/tree" element={<MamberTree/>}/>
  
         </Routes> 
     </div>

@@ -26,6 +26,7 @@ const Sidebar = ({ collapsed }) => {
   const [openDropdown5, setOpenDropdown5] = useState('');
   const [openDropdown6, setOpenDropdown6] = useState('');
   const [openDropdown7, setOpenDropdown7] = useState('');
+  const [openDropdown8, setOpenDropdown8] = useState('');
 
   const handleClick1 = (menu) => {
     setActive(menu);
@@ -54,6 +55,10 @@ const Sidebar = ({ collapsed }) => {
   const handleClick7 = (menu) => {
     setActive(menu);
     setOpenDropdown7(openDropdown7 === menu ? '' : menu);
+  };
+  const handleClick8 = (menu) => {
+    setActive(menu);
+    setOpenDropdown8(openDropdown8 === menu ? '' : menu);
   };
 
   return (
@@ -258,25 +263,58 @@ const Sidebar = ({ collapsed }) => {
       <div
         className={`submenu-container ${openDropdown7 === 'general' && !collapsed ? 'open' : ''}`}
       >
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Transaction</div> </NavLink>
-       
+      <NavLink to="/withdraw_pending" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Withdraw</div> </NavLink>
+       <NavLink to="/Compelte-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Withdraw</div> </NavLink>
+       <NavLink to="/reject-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Withdraw</div> </NavLink>
       </div>
     </div> 
 
 {/* ************************************************************************************************************************************ */}
 
 
+ 
 
-    
-      <div className={`menu-item ${active === 'general' ? 'active' : ''}`} onClick={() => handleClick('general')}>
-        <span><FaCoins  /></span> {!collapsed && <span className="ms-2">Setting</span>}
+  <div> 
+      <div
+        className={`menu-item ${active === 'general11' ? 'active' : ''}`}
+        onClick={() => handleClick8('general11')}
+      >
+        <span><FaBitcoin   /></span>
+        {!collapsed && (
+          <>
+            <span className="ms-2">Setting</span>
+           <span className={`ms-auto rotate-icon ${openDropdown8 === 'general11' ? 'rotate' : ''}`}>
+  {<FaChevronDown />}
+</span>
+
+          </>
+        )}
       </div>
-      <div className={`menu-item ${active === 'users' ? 'active' : ''}`} onClick={() => handleClick('users')}>
-        <span><IoIosSpeedometer /></span> {!collapsed && <span className="ms-2">Help Center  </span>}
+
+      {/* Smooth dropdown */}
+      <div
+        className={`submenu-container ${openDropdown8 === 'general11' && !collapsed ? 'open' : ''}`}
+      >
+      <NavLink to="/withdraw_pending" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Withdraw</div> </NavLink>
+       <NavLink to="/Compelte-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Withdraw</div> </NavLink>
+       <NavLink to="/reject-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Withdraw</div> </NavLink>
       </div>
+    </div> 
+
+
+
+
+      <NavLink to="/help" style={{textDecoration:'none', color:'#212529'}} ><div className={`menu-item ${active === 'users' ? 'active' : ''}`} onClick={() => handleClick('users')}>
+         <span><IoIosSpeedometer /></span> {!collapsed && <span className="ms-2">Help Center  </span> 
+        }
+      </div>
+        </NavLink>
+
+
+        <NavLink to="/tree"  style={{textDecoration:'none', color:'#212529'}}>
       <div className={`menu-item ${active === 'payout' ? 'active' : ''}`} onClick={() => handleClick('payout')}>
         <span><IoIosLogIn /></span> {!collapsed && <span className="ms-2">Mamber-Tree</span>}
-      </div>
+      </div></NavLink>
     </div>
 
 

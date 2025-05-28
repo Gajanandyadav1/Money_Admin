@@ -1,0 +1,93 @@
+.tree-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.search-box input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.tree-container {
+  text-align: center;
+  overflow-x: auto;
+}
+
+.tree,
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.tree li {
+  text-align: center;
+  position: relative;
+  padding: 20px 5px 0 5px;
+}
+
+/* connectors */
+.tree li::before,
+.tree li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.tree li::before {
+  left: -50%;
+}
+.tree li::after {
+  right: -50%;
+}
+.tree li:only-child::before,
+.tree li:only-child::after {
+  content: none;
+}
+.tree li:only-child {
+  padding-top: 0;
+}
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-left: 1px solid #ccc;
+  border-radius: 5px 0 0 0;
+}
+
+.member-box {
+  background: white;
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid #eee;
+  min-width: 120px;
+}
+.member-box.filled img {
+  width: 40px;
+  background-color: #00c800;
+  border-radius: 50%;
+}
+.member-box.open img {
+  width: 40px;
+}
+.member-info .name {
+  font-weight: bold;
+  font-size: 14px;
+}
+.member-info .username {
+  font-size: 12px;
+  color: #444;
+}
