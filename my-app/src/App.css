@@ -218,3 +218,9 @@
     font-size: 14px;
   }
 }
+
+
+.dropdown-toggle::after{
+  opacity: 0;
+  
+}

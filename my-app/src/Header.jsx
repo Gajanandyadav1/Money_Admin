@@ -4,7 +4,10 @@ import { CiMenuBurger } from "react-icons/ci";
 import './App.css'; 
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa"; 
+import Dropdown from 'react-bootstrap/Dropdown';
+import { NavLink } from 'react-router-dom';
+
 
 const Header = ({ toggleSidebar }) => {
    const [show, setShow] = useState(false);
@@ -41,7 +44,17 @@ const Header = ({ toggleSidebar }) => {
                     <div className='col-lg-2 col-sm-6 col-md-6 col-2'> 
                       <div style={{display:'flex', justifyContent:'center', }}>
 
-                         <FaUserAlt />
+                         <Dropdown>
+      <Dropdown.Toggle variant="white"  style={{outline:'none', border:'none'}}>
+        <FaUserAlt id="dropdown-basic" />
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu >
+       <NavLink to="/profile">  <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item> </NavLink>
+       <NavLink to="/updatepassword">   <Dropdown.Item href="#/action-2">Change Password </Dropdown.Item> </NavLink>
+        <Dropdown.Item href="#/action-3">Logout  </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
                       </div>
 
                     </div>
@@ -79,3 +92,7 @@ const Header = ({ toggleSidebar }) => {
 };
 
 export default Header;
+
+
+
+

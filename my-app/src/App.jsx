@@ -25,6 +25,8 @@ import CompelteWithdraw from './Component/WithdrawSection/CompelteWithdraw';
 import RejectWithdraw from './Component/WithdrawSection/RejectWithdraw';
 import HelpCenter from './Component/HelpCenter_Section/HelpCenter';
 import MamberTree from './Component/Mamber/MamberTree';
+import ChangePassword from './Component/Profile/ChangePassword';
+import Profile from './Component/Profile/profile';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -62,6 +64,8 @@ const App = () => {
         <Route path="/reject-Withdraw" element={<RejectWithdraw/>}/>
         <Route path="/help" element={<HelpCenter/>}/>
         <Route path="/tree" element={<MamberTree/>}/>
+        <Route path="/updatepassword" element={<ChangePassword/>}/>
+        <Route path="/profile" element={<Prof ile/>}/>
  
         </Routes> 
     </div>
