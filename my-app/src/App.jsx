@@ -27,6 +27,8 @@ import HelpCenter from './Component/HelpCenter_Section/HelpCenter';
 import MamberTree from './Component/Mamber/MamberTree';
 import ChangePassword from './Component/Profile/ChangePassword';
 import Profile from './Component/Profile/profile';
+import WalletSettings from './Component/Setting/WalletSettings'; 
+import News from './Component/Setting/News';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -65,7 +67,9 @@ const App = () => {
         <Route path="/help" element={<HelpCenter/>}/>
         <Route path="/tree" element={<MamberTree/>}/>
         <Route path="/updatepassword" element={<ChangePassword/>}/>
-        <Route path="/profile" element={<Prof ile/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/wallet" element={<WalletSettings/>}/>
+        <Route path="/news" element={<News/>}/>
  
         </Routes> 
     </div>

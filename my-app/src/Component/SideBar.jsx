@@ -76,32 +76,29 @@ const Sidebar = ({ collapsed }) => {
         <span><MdDashboard className='fs-5'/></span> {!collapsed && <span className="ms-2">Dashboard</span>}
       </div></NavLink> 
 {/* ******************************************************************************************************************************** */}
-       <div> 
+       <div>
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick1('general')}
       >
         <span><FaUser /></span>
-        {!collapsed && (
-          <>
-            <span className="ms-2">General List</span>
-           <span className={`ms-auto rotate-icon ${openDropdown === 'general' ? 'rotate' : ''}`}>
-  {<FaChevronDown />}
-</span>
-
-          </>
-        )}
+        <span className="ms-2">General List</span>
+        <span className={`ms-auto rotate-icon ${openDropdown === 'general' ? 'rotate' : ''}`}>
+          <FaChevronDown />
+        </span>
       </div>
 
-     
-      <div
-        className={`submenu-container ${openDropdown === 'general' && !collapsed ? 'open' : ''}`}
-      >
-       <NavLink to="/transaction" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Transaction</div> </NavLink>
-       
-      </div>
-    </div> 
-
+      {openDropdown === 'general' && (
+        <div>
+          <NavLink to="/transaction" style={{ textDecoration: 'none' }}>
+            <div className="submenu-item">➤ Transaction</div>
+          </NavLink>
+          <NavLink to="/report" style={{ textDecoration: 'none' }}>
+            <div className="submenu-item">➤ Report</div>
+          </NavLink>
+        </div>
+      )}
+    </div>
 {/* ************************************************************************************************************************************ */}
 
 
@@ -295,9 +292,8 @@ const Sidebar = ({ collapsed }) => {
       <div
         className={`submenu-container ${openDropdown8 === 'general11' && !collapsed ? 'open' : ''}`}
       >
-      <NavLink to="/withdraw_pending" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Pending Withdraw</div> </NavLink>
-       <NavLink to="/Compelte-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Withdraw</div> </NavLink>
-       <NavLink to="/reject-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Withdraw</div> </NavLink>
+      <NavLink to="/wallet" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ QR and Wallet</div> </NavLink>
+       <NavLink to="/news" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Setting News</div> </NavLink> 
       </div>
     </div> 
 
