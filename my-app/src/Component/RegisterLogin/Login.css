@@ -30,7 +30,7 @@
 }
 
 .btn-warning {
-  background: linear-gradient(to right, #f5b400, #ffe27a);
+  background: linear-gradient(to right, #f5b400, #ffe27a) ;
   color: #000;
   border: none;
 }
