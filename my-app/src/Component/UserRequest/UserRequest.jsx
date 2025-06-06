@@ -137,7 +137,7 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
 
       <td >  {item?.status}  </td>
 
-      <td >  <button className='btn btn-success'  onClick={() => RequestApprove(item.id, "Approve")}>Approve </button>
+      <td >  <button className='btn btn-success'  onClick={() => RequestApprove(item.id)}>Approve </button>
 <button   className='btn btn-danger ms-2'  onClick={() => {   handleShow3(item?.id); setSelectedIdResion(item.id);  }}>
   Reject
 </button>

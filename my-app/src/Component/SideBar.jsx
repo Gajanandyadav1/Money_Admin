@@ -11,6 +11,7 @@ import { FaCoins } from "react-icons/fa6";
 import { IoIosSpeedometer } from "react-icons/io";
 import { IoIosLogIn } from "react-icons/io";
 import { FaRegPaperPlane } from "react-icons/fa";
+import logo from '../assets/win-removebg-preview.png'
 const Sidebar = ({ collapsed }) => {
   const [active, setActive] = useState('dashboard');
 
@@ -26,7 +27,7 @@ const Sidebar = ({ collapsed }) => {
   const [openDropdown5, setOpenDropdown5] = useState('');
   const [openDropdown6, setOpenDropdown6] = useState('');
   const [openDropdown7, setOpenDropdown7] = useState('');
-  const [openDropdown8, setOpenDropdown8] = useState('');
+  // const [openDropdown8, setOpenDropdown8] = useState('');
 
   const handleClick1 = (menu) => {
     setActive(menu);
@@ -56,10 +57,10 @@ const Sidebar = ({ collapsed }) => {
     setActive(menu);
     setOpenDropdown7(openDropdown7 === menu ? '' : menu);
   };
-  const handleClick8 = (menu) => {
-    setActive(menu);
-    setOpenDropdown8(openDropdown8 === menu ? '' : menu);
-  };
+  // const handleClick8 = (menu) => {
+  //   setActive(menu);
+  //   setOpenDropdown8(openDropdown8 === menu ? '' : menu);
+  // };
 
   //  const { id } = useParams()
   return (
@@ -69,8 +70,8 @@ const Sidebar = ({ collapsed }) => {
     <div className="row">
       <div className='col-lg-12 col-sm-12 ps-0 ms-0'>
 
-        <div>
-          <h4 className='text-center pt-4'>Logo</h4>
+        <div style={{display:'flex', justifyContent:'center'}}>
+              <img src={logo} className='icon_header' style={{width:'50%'}}/>
         </div >
          <div className={`sidebar  ${collapsed ? 'collapsed' : ''}`}>
      <NavLink  to="/home" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'dashboard' ? 'active' : ''}`} onClick={() => handleClick('dashboard')}>
@@ -86,6 +87,10 @@ const Sidebar = ({ collapsed }) => {
 {/* ******************************************************************************************************************************** */}
    <NavLink  to="/plan" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'plan' ? 'active' : ''}`} onClick={() => handleClick('plan')}>
         <span><FaRegPaperPlane className='fs-5'/></span> {!collapsed && <span className="ms-2">Plan</span>}
+      </div></NavLink> 
+{/* ******************************************************************************************************************************** */}
+   <NavLink  to="/package" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'package' ? 'active' : ''}`} onClick={() => handleClick('package')}>
+        <span><FaRegPaperPlane className='fs-5'/></span> {!collapsed && <span className="ms-2">Package</span>}
       </div></NavLink> 
 {/* ******************************************************************************************************************************** */}
        <div>
@@ -249,9 +254,12 @@ const Sidebar = ({ collapsed }) => {
     </div> 
 
 {/* ************************************************************************************************************************************ */}
+     <NavLink to="/withdraw_pending" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'withdraw_pending' ? 'active' : ''}`} onClick={() => handleClick('withdraw_pending')}>
+      <span><FaDollarSign  /></span> {!collapsed && <span className="ms-2">Withdrawal Request</span>}
+      </div>
+</NavLink>
 
-
-        <div> 
+        {/* <div> 
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick7('general')}
@@ -267,8 +275,7 @@ const Sidebar = ({ collapsed }) => {
           </>
         )}
       </div>
-
-      {/* Smooth dropdown */}
+ 
       <div
         className={`submenu-container ${openDropdown7 === 'general' && !collapsed ? 'open' : ''}`}
       >
@@ -276,40 +283,17 @@ const Sidebar = ({ collapsed }) => {
        <NavLink to="/Compelte-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Complete Withdraw</div> </NavLink>
        <NavLink to="/reject-Withdraw" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reject Withdraw</div> </NavLink>
       </div>
-    </div> 
+    </div>  */}
 
 {/* ************************************************************************************************************************************ */}
 
 
- 
+  
 
-  <div> 
-      <div
-        className={`menu-item ${active === 'general11' ? 'active' : ''}`}
-        onClick={() => handleClick8('general11')}
-      >
-        <span><FaBitcoin   /></span>
-        {!collapsed && (
-          <>
-            <span className="ms-2">Setting</span>
-           <span className={`ms-auto rotate-icon ${openDropdown8 === 'general11' ? 'rotate' : ''}`}>
-  {<FaChevronDown />}
-</span>
-
-          </>
-        )}
-      </div>
-
-      {/* Smooth dropdown */}
-      <div
-        className={`submenu-container ${openDropdown8 === 'general11' && !collapsed ? 'open' : ''}`}
-      >
-      <NavLink to="/wallet" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ QR and Wallet</div> </NavLink>
-       <NavLink to="/news" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Setting News</div> </NavLink> 
-      </div>
-    </div> 
-
-
+ <NavLink to="/news"  style={{textDecoration:'none', color:'#212529'}}>
+      <div className={`menu-item ${active === 'payout' ? 'active' : ''}`} onClick={() => handleClick('setting')}>
+        <span><FaBitcoin /></span> {!collapsed && <span className="ms-2">Setting</span>}
+      </div></NavLink>
 
 
       <NavLink to="/help" style={{textDecoration:'none', color:'#212529'}} ><div className={`menu-item ${active === 'users' ? 'active' : ''}`} onClick={() => handleClick('users')}>

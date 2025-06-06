@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../../env'; 
-import { Tabs, Tab, Box } from "@mui/material";
+import { Tabs, Tab, Box, } from "@mui/material";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';  
+import Table from 'react-bootstrap/Table';
+
 const IncomeDetails = ({ userId }) => {
 
      
     // alert({userId})
+      const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 const [Income, setIncome] = useState([]);
 const [currentPage, setCurrentPage] = useState(1);
 const [totalPages, setTotalPages] = useState(1);
+
+ const [planIncome, setPlanIncome] = useState([])
 
     const [activeTab, setActiveTab] = useState(0);
 
@@ -37,8 +47,41 @@ const [totalPages, setTotalPages] = useState(1);
       .catch((error) => console.error(error));
   };
 
+
+
+
+
+
+
+
+
+
+  const PlanIncome =()=>{
+    try {
+        const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) =>{
+        if(result?.success == true){
+            setPlanIncome(result?.data?.requests)
+        }
+  })
+  .catch((error) => console.error(error));
+    } catch (error) {
+      console.log(error)  
+    }
+  }
   useEffect(() => {
     referralAPi();
+    PlanIncome();
   }, []);
 
 
@@ -54,7 +97,7 @@ const [totalPages, setTotalPages] = useState(1);
       {/* Tabs */}
       <Tabs value={activeTab} onChange={handleChange} >
         <Tab label="Reffrels"   style={{textTransform: 'capitalize', fontSize:'18px'}}/>
-        <Tab label="Income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
+        <Tab label="Plan Income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
       </Tabs>
 
       {/* Tab Panels */}
@@ -76,7 +119,7 @@ const [totalPages, setTotalPages] = useState(1);
   </thead>
   <tbody>
     {Income?.length > 0 ? (
-      Income.map((item, index) => (
+      Income?.map((item, index) => (
         <tr key={index}>
           <td>{index + 1}</td>
           <td>{item?.fromUserDetails?.name || 'N/A'}</td>
@@ -118,7 +161,56 @@ const [totalPages, setTotalPages] = useState(1);
 
             </div>
         </>} 
-        {activeTab === 1 &&  <h5>Data not Found</h5>}
+
+
+
+
+
+
+
+
+        {activeTab === 1 &&  <div>
+            
+            <div className='container'>
+                <div className='row'>
+                    <div className='col-lg-12'>
+
+                        <table className="table text-nowrap">
+  <thead className="thead-light">
+    <tr>
+      <th>#</th>
+      <th>Plan</th>
+      <th>Amount</th> 
+      <th>Remark</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {planIncome?.length > 0 ? (
+      planIncome?.map((item, index) => (
+        <tr key={index}>
+          <td>{index + 1}</td>
+          <td>{item?.fromUserDetails?.name  }</td> 
+          <td>₹{item?.amount}</td>
+          <td>{item?.remark}</td>
+          <td>{new Date(item?.createdAt).toLocaleDateString()}</td>
+          <td><button className='btn btn-primary' onClick={()=>{handleShow(item?.id)}}>View More</button></td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+          No data found
+        </td>
+      </tr>
+    )}
+  </tbody>
+</table>
+                    </div>
+                </div>
+            </div>
+            </div>}
       </Box>
     </Box>
 
@@ -127,7 +219,61 @@ const [totalPages, setTotalPages] = useState(1);
           
           </div>
         </div>
-      </div>  
+      </div> 
+
+
+
+
+
+       <Modal show={show} onHide={handleClose} size='xl'>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+            <Table striped bordered hover>
+      <thead>
+        <tr> 
+          <th>#</th>
+          <th> Name</th>
+          <th>description</th>
+          <th>price</th>
+          <th>duration</th>
+          <th>dailyIncome</th>
+          <th>totalIncome</th>
+          <th>requiredReferrals</th> 
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {
+           planIncome?.map((item, index)=>{
+            return (
+           <tr>
+          <td>{index+1}</td>
+          <td>{item?.planDetails?.name}</td>
+          <td>{item?.planDetails?.description}</td>
+          <td>{item?.planDetails?.price}</td>
+          <td>{item?.planDetails?.duration}</td>
+          <td>{item?.planDetails?.dailyIncome}</td>
+          <td>{item?.planDetails?.totalIncome}</td>
+          <td>{item?.planDetails?.requiredReferrals}</td>
+          <td>{item?.planDetails?.createdAt}</td> 
+          
+        </tr>
+            )
+           }) 
+        }
+       
+
+      </tbody>
+    </Table>
+
+        </Modal.Body>
+        
+      </Modal>
+
     </div>
   )
 }

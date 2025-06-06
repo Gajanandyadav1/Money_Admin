@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 const Referral = () => {
 
-const {id} =useParams()
+const {id} = useParams()
+
   const [referralData, setReferralData] = useState([]) 
 const [currentPage, setCurrentPage] = useState(1);
 const [totalPages, setTotalPages] = useState(1);
@@ -14,15 +15,10 @@ const [totalPages, setTotalPages] = useState(1);
       const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-// const raw = JSON.stringify({
-//   "requestId": 4,
-//   "status": "Approve"
-// });
-
+ 
 const requestOptions = {
   method: "GET",
   headers: myHeaders,
-  // body: raw,
   redirect: "follow"
 };
 
@@ -31,6 +27,7 @@ fetch(`${API_URL}/api/admin/v1/users/referrals/${id}?page=${page}`, requestOptio
   .then((result) => {
     if (result.success === true) {
       setReferralData(result?.data?.users)
+      console.log(result?.data?.users,"gajju babau")
 setCurrentPage(result?.data?.currentPage || 1);
           setTotalPages(result?.data?.totalPages || 1);
       console.log(result.data);
@@ -74,7 +71,7 @@ referralAPi()
   </thead>
  <tbody>
   {referralData?.length > 0 ? (
-    referralData.map((item, index) => (
+    referralData?.map((item, index) => (
       <tr key={index} className='MyText'>
         <td scope="row">{index + 1}</td>
         <td>{item?.name}</td>

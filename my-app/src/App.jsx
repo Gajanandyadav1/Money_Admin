@@ -32,6 +32,7 @@ import News from './Component/Setting/News';
 import Login from './Component/RegisterLogin/Login';
 import UserRequest from './Component/UserRequest/UserRequest';
 import Plan from './Component/Plan/Plan';
+import Package2 from './Component/packages/package';
 import PublicRoute from './Component/ProtectedRoute/PublicRoute';
 import ProtectedRoute from './Component/ProtectedRoute/ProtectedRoute';
 
@@ -81,10 +82,11 @@ const App = () => {
         <Route path="/tree" element={<MamberTree/>}/>
         <Route path="/updatepassword" element={<ChangePassword/>}/>
         <Route path="/profile" element={<Profile/>}/>
-        <Route path="/wallet" element={<WalletSettings/>}/>
+        {/* <Route path="/wallet" element={<WalletSettings/>}/> */}
         <Route path="/news" element={<News/>}/>
         <Route path="/User_req" element={<UserRequest/>}/>
         <Route path="/plan" element={<Plan/>}/>
+        <Route path="/package" element={<Package2/>}/>
  
         </Routes> 
     </div>
