@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FaUserAlt } from "react-icons/fa"; 
 import Dropdown from 'react-bootstrap/Dropdown';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const Header = ({ toggleSidebar }) => {
@@ -14,6 +14,12 @@ const Header = ({ toggleSidebar }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+const navigate = useNavigate()
+   const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
+  };
   return (
     <div className=" ">
       
@@ -52,7 +58,7 @@ const Header = ({ toggleSidebar }) => {
       <Dropdown.Menu >
        <NavLink to="/profile">  <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item> </NavLink>
        <NavLink to="/updatepassword">   <Dropdown.Item href="#/action-2">Change Password </Dropdown.Item> </NavLink>
-        <Dropdown.Item href="#/action-3">Logout  </Dropdown.Item>
+        <Dropdown.Item  onClick={handleLogout}>Logout  </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
                       </div>

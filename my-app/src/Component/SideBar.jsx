@@ -3,14 +3,14 @@ import '../App.css';
 import { MdDashboard } from "react-icons/md";
 import { FaChevronDown, FaDollarSign } from 'react-icons/fa';
 import { FaUser } from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
+import { NavLink,   } from 'react-router-dom';
 import { RiFundsBoxLine } from "react-icons/ri";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { FaBitcoin } from "react-icons/fa";
 import { FaCoins } from "react-icons/fa6";
 import { IoIosSpeedometer } from "react-icons/io";
 import { IoIosLogIn } from "react-icons/io";
-
+import { FaRegPaperPlane } from "react-icons/fa";
 const Sidebar = ({ collapsed }) => {
   const [active, setActive] = useState('dashboard');
 
@@ -61,9 +61,10 @@ const Sidebar = ({ collapsed }) => {
     setOpenDropdown8(openDropdown8 === menu ? '' : menu);
   };
 
+  //  const { id } = useParams()
   return (
    <>
-   <div className='hDark' >
+   <div className='hDark'  style={{  height: '100vh',   width: collapsed ? '60px' : '250px', transition: 'width 0.3s ease-in-out', overflowY:'scroll',boxShadow: '0px 0px 3px 0px #f97316',}}>
    <div className='container-fluid DeskTopView'  style={{boxShadow: '0px 0px 3px 0px #f97316',  }}>
     <div className="row">
       <div className='col-lg-12 col-sm-12 ps-0 ms-0'>
@@ -72,8 +73,19 @@ const Sidebar = ({ collapsed }) => {
           <h4 className='text-center pt-4'>Logo</h4>
         </div >
          <div className={`sidebar  ${collapsed ? 'collapsed' : ''}`}>
-     <NavLink  to="/" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'dashboard' ? 'active' : ''}`} onClick={() => handleClick('dashboard')}>
+     <NavLink  to="/home" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'dashboard' ? 'active' : ''}`} onClick={() => handleClick('dashboard')}>
         <span><MdDashboard className='fs-5'/></span> {!collapsed && <span className="ms-2">Dashboard</span>}
+      </div></NavLink> 
+{/* ******************************************************************************************************************************** */}
+
+ <NavLink  to="/user_req" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'user_req' ? 'active' : ''}`} onClick={() => handleClick('user_req')}>
+        <span><MdDashboard className='fs-5'/></span> {!collapsed && <span className="ms-2">User Request</span>}
+      </div></NavLink>
+
+
+{/* ******************************************************************************************************************************** */}
+   <NavLink  to="/plan" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'plan' ? 'active' : ''}`} onClick={() => handleClick('plan')}>
+        <span><FaRegPaperPlane className='fs-5'/></span> {!collapsed && <span className="ms-2">Plan</span>}
       </div></NavLink> 
 {/* ******************************************************************************************************************************** */}
        <div>
@@ -126,7 +138,7 @@ const Sidebar = ({ collapsed }) => {
         className={`submenu-container ${openDropdown2 === 'general' && !collapsed ? 'open' : ''}`}
       >
        <NavLink to="/alluser" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  All Users</div> </NavLink>
-       <NavLink to="/walletbalance" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  Wallet Balance</div> </NavLink>
+       {/* <NavLink to= {`/walletbalance/${id}`} style={{textDecoration:'none'}}>  <div className="submenu-item">➤  User Referrals</div> </NavLink> */}
        <NavLink to="/activeusers" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  Active Balance</div> </NavLink>
        <NavLink to="/activein" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  In-Active Balance</div> </NavLink>
        <NavLink to="/blockusers" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  Block Balance</div> </NavLink>

@@ -20,9 +20,8 @@
 }
 
 .form-control {
-  background-color: #1f1f3d;
-  border: none;
-  color: white;
+  /* background-color: #1f1f3d; */
+   
 }
 
 .form-control::placeholder {

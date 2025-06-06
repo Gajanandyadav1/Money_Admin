@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './Header';
 import Sidebar from './Component/SideBar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './Component/Home';
 import Transaction from './Component/Transaction';
 import AllUser from './Component/UserSections/AllUser';
@@ -29,25 +29,38 @@ import ChangePassword from './Component/Profile/ChangePassword';
 import Profile from './Component/Profile/profile';
 import WalletSettings from './Component/Setting/WalletSettings'; 
 import News from './Component/Setting/News';
+import Login from './Component/RegisterLogin/Login';
+import UserRequest from './Component/UserRequest/UserRequest';
+import Plan from './Component/Plan/Plan';
+import PublicRoute from './Component/ProtectedRoute/PublicRoute';
+import ProtectedRoute from './Component/ProtectedRoute/ProtectedRoute';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
+  // agar path "/" ho, matlab login page hai
+  const isLoginPage = location.pathname === '/';
   return (
    <div className="container-fluid">
   <div className="row ">
-    <div className={collapsed ? 'col-auto sidebar-container px-0 ' : 'col-md-2 col-sm-3 sidebar-container px-0'}>
-      <Sidebar collapsed={collapsed}  />
-    </div>
+       {!isLoginPage && (
+      <div className={collapsed ? 'col-auto sidebar-container px-0' : 'col-md-2 col-sm-3 sidebar-container px-0'}>
+        <Sidebar collapsed={collapsed} />
+      </div>
+    )}
 
-    <div className={collapsed ? 'col ps-0' : 'col-md-10 col-sm-9 g-0 g-1 '}>
-      <Header toggleSidebar={() => setCollapsed(!collapsed)} />
-  
+ 
+    <div className={isLoginPage ? 'col-12 px-0' : (collapsed ? 'col ps-0' : 'col-md-10 col-sm-9 g-0 g-1')}>
+ 
+      {!isLoginPage && <Header toggleSidebar={() => setCollapsed(!collapsed)} />}
          <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<PublicRoute> <Login/></PublicRoute>}/>
+
+        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
         <Route path="/transaction" element={<Transaction/>}/>
         <Route path="/alluser" element={<AllUser/>}/>
-        <Route path="/walletbalance" element={<WalletBalance/>}/>
+        <Route path="/UserProfile/:id" element={<WalletBalance/>}/>
         <Route path="/activeusers" element={<AllActiveUsers/>}/>
         <Route path="/activein" element={<AllinActive/>}/>
         <Route path="/blockusers" element={<BlockMember/>}/>
@@ -70,6 +83,8 @@ const App = () => {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/wallet" element={<WalletSettings/>}/>
         <Route path="/news" element={<News/>}/>
+        <Route path="/User_req" element={<UserRequest/>}/>
+        <Route path="/plan" element={<Plan/>}/>
  
         </Routes> 
     </div>

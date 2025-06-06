@@ -8,6 +8,18 @@
   }
 
  
+  table th{
+    background-color: #f97316 !important;
+    padding: 10px !important;
+    color: white !important;
+    
+  }.table thead tr th:first-child {
+  border-top-left-radius: 10px !important;
+}
+
+.table thead tr th:last-child {
+  border-top-right-radius: 10px !important;
+}
 .content-area {
   flex: 1;
   padding: 20px;
@@ -153,6 +165,9 @@
     .MobileView1010{
       display: block !important;
     }
+    .hDark{
+      height: auto !important;
+    }
      
   }  
  
@@ -217,10 +232,257 @@
   .table {
     font-size: 14px;
   }
+  .table{
+    text-wrap: nowrap !important;
+  }
+  .MyTable{
+    width: 100% !important;
+    overflow-x: scroll !important;
+  }
 }
 
 
 .dropdown-toggle::after{
   opacity: 0;
   
+}/* App.css or index.css */
+.login-fullscreen {
+ width: 100vw !important;       /* full screen width */
+  height: 100v !important;      /* full screen height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;/* optional */
 }
+.no-data-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  animation: fadeIn 1s ease-in-out infinite alternate;
+  color: #888;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+.plan-card {
+  width: 100%;
+  background: #4c6ef5;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.plan-card h2 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.mo {
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+.billed {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.features li {
+  text-align: left;
+  background: white;
+  color: black;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.check {
+  color: green;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.cross {
+  color: red;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.info {
+  float: right;
+  color: #888;
+}
+
+.start-btn {
+  width: 100%;
+  padding: 10px;
+  background: #f97316;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.tabs-box {
+ 
+}
+
+.tabs-header {
+  display: flex;
+  position: relative;
+  background-color: #f8f9fa;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  color: #555;
+}
+
+.tab-btn:hover {
+  background-color: #eee;
+}
+
+.tab-btn.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #f97316;
+  border-radius: 0;
+  border-radius: 10px 10px 0px 0px ;
+}
+
+ 
+
+.tab-body {
+ padding-top: 25px;
+  background-color: #fff;
+}
+
+.tab-content.fade-in {
+  animation: fadeSlide 0.4s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@keyframes pulseOpacity {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+.pulse-text {
+  animation: pulseOpacity 1.5s infinite;
+  text-align: center;
+  vertical-align: middle;
+  height: 100px;
+}
+ 
+
+
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+ 
+}
+
+.profile-card {
+  background: #ffffff;
+  padding: 25px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.close-btn {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.text-muted {
+  color: gray;
+}
+
+ @media (max-width:768px){
+
+  .tabs-header  {
+    width: 100% !important;
+    overflow-x: scroll !important;
+    text-wrap: nowrap !important; 
+  }
+
+  .tabs-header button{
+    width: 100% !important; 
+    text-wrap: nowrap !important;
+    padding: 10px 20px;
+  }
+ }  
