@@ -16,25 +16,9 @@ const PayoutSummary = () => {
     <div className="container my-4">
       <h5 className="fw-semibold mb-3">Payout Summary</h5>
 
-      <div className="row g-3 mb-3">
-        <div className="col-md-3">
-          <label>Start date:</label>
-          <input type="date" className="form-control" placeholder="dd-mm-yyyy" />
-        </div>
-        <div className="col-md-3">
-          <label>End date:</label>
-          <input type="date" className="form-control" placeholder="dd-mm-yyyy" />
-        </div>
-        <div className="col-md-6">
-          <label>Search User</label>
-          <input type="text" className="form-control" placeholder="Name,Username,number" />
-        </div>
-      </div>
+       
 
-      <div className="mb-3">
-        <button className="btn btn-success me-2">Search Now</button>
-        <button className="btn btn-info text-white">Reset</button>
-      </div>
+    
 
       <div className="table-responsive">
         <table className="table table-bordered text-center custom-table">

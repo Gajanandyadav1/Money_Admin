@@ -7,7 +7,14 @@
 
   }
 
- 
+ .animated-no-data {
+  animation: fadeIn 0.8s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
   table th{
     background-color: #f97316 !important;
     padding: 10px !important;

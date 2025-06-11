@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import '../App.css';
 import { MdDashboard } from "react-icons/md";
@@ -11,6 +12,11 @@ import { FaCoins } from "react-icons/fa6";
 import { IoIosSpeedometer } from "react-icons/io";
 import { IoIosLogIn } from "react-icons/io";
 import { FaRegPaperPlane } from "react-icons/fa";
+import { GoPackageDependents } from "react-icons/go"; 
+import { RiLockPasswordFill } from "react-icons/ri";
+import { MdWifiPassword } from "react-icons/md";
+import { FaMoneyBillWave } from "react-icons/fa";
+
 import logo from '../assets/win-removebg-preview.png'
 const Sidebar = ({ collapsed }) => {
   const [active, setActive] = useState('dashboard');
@@ -65,7 +71,7 @@ const Sidebar = ({ collapsed }) => {
   //  const { id } = useParams()
   return (
    <>
-   <div className='hDark'  style={{  height: '100vh',   width: collapsed ? '60px' : '250px', transition: 'width 0.3s ease-in-out', overflowY:'scroll',boxShadow: '0px 0px 3px 0px #f97316',}}>
+   <div className='hDark'  style={{  height: '100vh',   width: collapsed ? '60px' : '100%', transition: 'width 0.3s ease-in-out', overflowY:'scroll',boxShadow: '0px 0px 3px 0px #f97316',}}>
    <div className='container-fluid DeskTopView'  style={{boxShadow: '0px 0px 3px 0px #f97316',  }}>
     <div className="row">
       <div className='col-lg-12 col-sm-12 ps-0 ms-0'>
@@ -80,7 +86,7 @@ const Sidebar = ({ collapsed }) => {
 {/* ******************************************************************************************************************************** */}
 
  <NavLink  to="/user_req" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'user_req' ? 'active' : ''}`} onClick={() => handleClick('user_req')}>
-        <span><MdDashboard className='fs-5'/></span> {!collapsed && <span className="ms-2">User Request</span>}
+        <span><MdWifiPassword     className='fs-5'/></span> {!collapsed && <span className="ms-2">User Request</span>}
       </div></NavLink>
 
 
@@ -90,10 +96,14 @@ const Sidebar = ({ collapsed }) => {
       </div></NavLink> 
 {/* ******************************************************************************************************************************** */}
    <NavLink  to="/package" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'package' ? 'active' : ''}`} onClick={() => handleClick('package')}>
-        <span><FaRegPaperPlane className='fs-5'/></span> {!collapsed && <span className="ms-2">Package</span>}
+        <span><GoPackageDependents  className='fs-5'/></span> {!collapsed && <span className="ms-2">Package</span>}
       </div></NavLink> 
 {/* ******************************************************************************************************************************** */}
-       <div>
+   <NavLink  to="/updatepassword" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'updatepassword' ? 'active' : ''}`} onClick={() => handleClick('updatepassword')}>
+        <span><RiLockPasswordFill   className='fs-5'/></span> {!collapsed && <span className="ms-2">Change Password</span>}
+      </div></NavLink> 
+{/* ******************************************************************************************************************************** */}
+       {/* <div>
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick1('general')}
@@ -115,13 +125,31 @@ const Sidebar = ({ collapsed }) => {
           </NavLink>
         </div>
       )}
-    </div>
+    </div> */}
+{/* ************************************************************************************************************************************ */}
+
+
+   <NavLink  to="/income" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'income' ? 'active' : ''}`} onClick={() => handleClick('income')}>
+        <span><FaMoneyBillWave    className='fs-5'/></span> {!collapsed && <span className="ms-2">Incomes</span>}
+      </div></NavLink> 
 {/* ************************************************************************************************************************************ */}
 
 
 
-        <div>
-      {/* General List (Dropdown) */}
+
+
+ <NavLink  to="/alluser" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'alluser' ? 'active' : ''}`} onClick={() => handleClick('alluser')}>
+        <span><FaUser className='fs-5'/></span> {!collapsed && <span className="ms-2">All Users</span>}
+      </div></NavLink>
+
+
+{/* ******************************************************************************************************************************** */}
+ 
+
+
+
+
+        {/* <div> 
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick2('general')}
@@ -137,33 +165,31 @@ const Sidebar = ({ collapsed }) => {
           </>
         )}
       </div>
-
-      {/* Smooth dropdown */}
+ 
       <div
         className={`submenu-container ${openDropdown2 === 'general' && !collapsed ? 'open' : ''}`}
       >
        <NavLink to="/alluser" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  All Users</div> </NavLink>
-       {/* <NavLink to= {`/walletbalance/${id}`} style={{textDecoration:'none'}}>  <div className="submenu-item">➤  User Referrals</div> </NavLink> */}
+      <NavLink to= {`/walletbalance/${id}`} style={{textDecoration:'none'}}>  <div className="submenu-item">➤  User Referrals</div> </NavLink>  
        <NavLink to="/activeusers" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  Active Balance</div> </NavLink>
        <NavLink to="/activein" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  In-Active Balance</div> </NavLink>
        <NavLink to="/blockusers" style={{textDecoration:'none'}}>  <div className="submenu-item">➤  Block Balance</div> </NavLink>
        
       </div>
-    </div> 
+    </div>  */}
 
 {/* ************************************************************************************************************************************ */}
-            <NavLink to="/payout" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'Payout' ? 'active' : ''}`} onClick={() => handleClick('Payout')}>
+            {/* <NavLink to="/payout" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'Payout' ? 'active' : ''}`} onClick={() => handleClick('Payout')}>
       <span><FaDollarSign  /></span> {!collapsed && <span className="ms-2">Payout Summary</span>}
       </div>
-</NavLink>
+</NavLink> */}
         
 
 {/* ************************************************************************************************************************************ */}
 
 
 
-        <div>
-      {/*   List (Dropdown) */}
+        {/* <div> 
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick4('general')}
@@ -179,8 +205,7 @@ const Sidebar = ({ collapsed }) => {
           </>
         )}
       </div>
-
-      {/* Smooth dropdown */}
+ 
       <div
         className={`submenu-container ${openDropdown4 === 'general' && !collapsed ? 'open' : ''}`}
       >
@@ -190,12 +215,12 @@ const Sidebar = ({ collapsed }) => {
        <NavLink to="/reward_income" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Reward Income</div> </NavLink>
        
       </div>
-    </div> 
+    </div>  */}
 
 {/* ************************************************************************************************************************************ */}
 
 
-        <div> 
+        {/* <div> 
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick5('general')}
@@ -211,8 +236,7 @@ const Sidebar = ({ collapsed }) => {
           </>
         )}
       </div>
-
-      {/* Smooth dropdown */}
+ 
       <div
         className={`submenu-container ${openDropdown5 === 'general' && !collapsed ? 'open' : ''}`}
       >
@@ -220,11 +244,11 @@ const Sidebar = ({ collapsed }) => {
        <NavLink to="/fund-history" style={{textDecoration:'none'}}>  <div className="submenu-item">➤ Admin History</div> </NavLink>
        
       </div>
-    </div> 
+    </div>  */}
 
 {/* ************************************************************************************************************************************ */}
 
-        <div> 
+        {/* <div> 
       <div
         className={`menu-item ${active === 'general1' ? 'active' : ''}`}
         onClick={() => handleClick6('general')}
@@ -240,8 +264,7 @@ const Sidebar = ({ collapsed }) => {
           </>
         )}
       </div>
-
-      {/* Smooth dropdown */}
+ 
       <div
         className={`submenu-container ${openDropdown6 === 'general' && !collapsed ? 'open' : ''}`}
       >
@@ -251,7 +274,7 @@ const Sidebar = ({ collapsed }) => {
        
        
       </div>
-    </div> 
+    </div>  */}
 
 {/* ************************************************************************************************************************************ */}
      <NavLink to="/withdraw_pending" style={{textDecoration:'none',color:'#000'}}><div className={`menu-item ${active === 'withdraw_pending' ? 'active' : ''}`} onClick={() => handleClick('withdraw_pending')}>
@@ -291,12 +314,12 @@ const Sidebar = ({ collapsed }) => {
   
 
  <NavLink to="/news"  style={{textDecoration:'none', color:'#212529'}}>
-      <div className={`menu-item ${active === 'payout' ? 'active' : ''}`} onClick={() => handleClick('setting')}>
+      <div className={`menu-item ${active === 'news' ? 'active' : ''}`} onClick={() => handleClick('news')}>
         <span><FaBitcoin /></span> {!collapsed && <span className="ms-2">Setting</span>}
       </div></NavLink>
 
 
-      <NavLink to="/help" style={{textDecoration:'none', color:'#212529'}} ><div className={`menu-item ${active === 'users' ? 'active' : ''}`} onClick={() => handleClick('users')}>
+      {/* <NavLink to="/help" style={{textDecoration:'none', color:'#212529'}} ><div className={`menu-item ${active === 'users' ? 'active' : ''}`} onClick={() => handleClick('users')}>
          <span><IoIosSpeedometer /></span> {!collapsed && <span className="ms-2">Help Center  </span> 
         }
       </div>
@@ -304,9 +327,9 @@ const Sidebar = ({ collapsed }) => {
 
 
         <NavLink to="/tree"  style={{textDecoration:'none', color:'#212529'}}>
-      <div className={`menu-item ${active === 'payout' ? 'active' : ''}`} onClick={() => handleClick('payout')}>
+      <div className={`menu-item ${active === 'tree' ? 'active' : ''}`} onClick={() => handleClick('tree')}>
         <span><IoIosLogIn /></span> {!collapsed && <span className="ms-2">Mamber-Tree</span>}
-      </div></NavLink>
+      </div></NavLink> */}
     </div>
 
 

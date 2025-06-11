@@ -18,7 +18,7 @@ const WalletBalance = () => {
 
 const {id} =useParams()
 
-const tabs = ["Referral Users", "Income", "Settings", "Contact", "About"];
+const tabs = ["Referral Users", "Income", ];
 const tabComponents = [<Referral  />, <IncomeDetails userId={id}/>]
  
   const [referralData, setReferralData] = useState([])
@@ -36,11 +36,11 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch(`${API_URL}/api/admin/v1/users/referrals/${id}`, requestOptions)
+fetch(`${API_URL}/api/admin/v1/users/${id}`, requestOptions)
   .then((response) => response.json())
   .then((result) => {
     if (result.success === true) {
-       setReferralData(result?.data?.users || []);
+       setReferralData(result?.data);
 
       console.log(result.data);
     }
@@ -67,9 +67,9 @@ referralAPi()
            <div className="profile-container">
       <div className="profile-card">
         <div className="header">
-          <img src={referralData[0]?.profile} alt="profile" className="avatar" />
+          <img src={referralData?.profile} alt="profile" className="avatar" />
           <div>
-            <h4>{referralData[0]?.name}</h4>
+            <h4>{referralData?.name}</h4>
             {/* <p>yourname@gmail.com</p> */}
           </div>
           <button className="close-btn">×</button>
@@ -79,23 +79,17 @@ referralAPi()
 
         <div className="info-row">
           <span>Name</span>
-          <span>{referralData[0]?.name}</span>
+          <span>{referralData?.name}</span>
         </div>
-        <div className="info-row">
-          <span>Date of Birth</span>
-          <span>{referralData[0]?.dob}</span>
-        </div>
+       
         <div className="info-row">
           <span>Mobile number</span>
-          <span className="text-muted">{referralData[0]?.mobile}</span>
+          <span className="text-muted">{referralData?.mobile}</span>
         </div>
-        <div className="info-row">
-          <span>Gender</span>
-          <span>{referralData[0]?.gender}</span>
-        </div>
+       
         <div className="info-row">
           <span>UserName</span>
-          <span>{referralData[0]?.username}</span>
+          <span>{referralData?.username}</span>
         </div>
 
         {/* <button className="save-btn">Save Change</button> */}

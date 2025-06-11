@@ -16,6 +16,9 @@ function UserRequest() {
 const [show, setShow] = useState(false);
 const [show2, setShow2] = useState(false);
 const [show3, setShow3] = useState(false);
+const [selectedPlanItem, setSelectedPlanItem] = useState(null);
+const [selectedUserItem, setSelectedUserItem] = useState(null);
+const [selectedUserItem2, setSelectedUserItem2] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -137,14 +140,28 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
 
       <td >  {item?.status}  </td>
 
-      <td >  <button className='btn btn-success'  onClick={() => RequestApprove(item.id)}>Approve </button>
+      <td >  <button className='btn btn-success'  onClick={() => RequestApprove(item.id, "Approve")}>Approve </button>
 <button   className='btn btn-danger ms-2'  onClick={() => {   handleShow3(item?.id); setSelectedIdResion(item.id);  }}>
   Reject
 </button>
             
- 
-    <button className='btn btn-primary mx-2' onClick={()=>{handleShow(item?.id)}}>Plan Details</button>
-    <button className='btn btn-primary ms-2'  onClick={()=>{handleShow2(item?.id)}}>User Details</button>
+ <button   className="btn btn-primary mx-2"
+  onClick={() => {   setSelectedPlanItem(item);   handleShow(item?.id);      // show the modal
+  }}
+>
+  Plan Details
+</button> 
+    {/* <button className='btn btn-primary ms-2'  onClick={()=>{handleShow2(item?.id)}}>User Details</button> */}
+   <button
+  className='btn btn-primary ms-2'
+  onClick={() => {
+    setSelectedUserItem2(item);
+    handleShow2(item?.id);
+  }}
+>
+  User Details
+</button>
+
   </td>
 
 
@@ -188,44 +205,37 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
         <Modal.Header closeButton>
           <Modal.Title>Plan Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-
-  <table className="table table-bordered table-striped ">
-          <thead className="table-dark">
-            <tr>
-              <th>#</th>
-              <th>name</th>
-              <th>description</th>
-              <th>price</th>
-              <th>duration</th>
-              <th>dailyIncome</th>
-              <th>totalIncome</th>
-              <th>requiredReferrals</th> 
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((item, index) => (
-              <tr key={item.id}>
-                <td>{(currentPage - 1) * 10 + index + 1}</td>
-                <td>{item?.planDetails?.name}</td>
-                <td>{item?.planDetails?.description}</td>
-                <td>{item?.planDetails?.price}</td>
-                <td>{item?.planDetails?.duration}</td>
-                <td>{item?.planDetails?.dailyIncome}</td>
-                <td>{item?.planDetails?.totalIncome}</td>
-                <td>{item?.planDetails?.requiredReferrals}</td>
-           
-              </tr>
-
-
-
-
-            ))}
-          </tbody>
-        </table>
-
-
-        </Modal.Body> 
+       <Modal.Body>
+  {selectedPlanItem && (
+    <table className="table table-bordered table-striped">
+      <thead className="table-dark">
+        <tr>
+          <th>#</th>
+          <th>name</th>
+          <th>description</th>
+          <th>price</th>
+          <th>duration</th>
+          <th>dailyIncome</th>
+          <th>totalIncome</th>
+          <th>requiredReferrals</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{selectedPlanItem?.planDetails?.name}</td>
+          <td>{selectedPlanItem?.planDetails?.description}</td>
+          <td>{selectedPlanItem?.planDetails?.price}</td>
+          <td>{selectedPlanItem?.planDetails?.duration}</td>
+          <td>{selectedPlanItem?.planDetails?.dailyIncome}</td>
+          <td>{selectedPlanItem?.planDetails?.totalIncome}</td>
+          <td>{selectedPlanItem?.planDetails?.requiredReferrals}</td>
+        </tr>
+      </tbody>
+    </table>
+  )}
+</Modal.Body>
+ 
       </Modal>
       
 
@@ -234,36 +244,29 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
         <Modal.Header closeButton>
           <Modal.Title>User Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-
-  <table className="table table-bordered table-striped ">
-          <thead className="table-dark">
-            <tr>
-              <th>#</th>
-              <th>name</th>
-              <th>Mobile</th> 
-              <th>Profile</th>  
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((item, index) => (
-              <tr key={item.id}>
-                <td>{(currentPage - 1) * 10 + index + 1}</td>
-                <td>{item?.userDetails?.name}</td>
-                <td>{item?.userDetails?.mobile}</td>
-                <td>{item?.userDetails?.profile}</td>  
-           
-              </tr>
-
-
-
-
-            ))}
-          </tbody>
-        </table>
-
-
-        </Modal.Body> 
+      <Modal.Body>
+  {selectedUserItem2 && (
+    <table className="table table-bordered table-striped">
+      <thead className="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{selectedUserItem2?.userDetails?.name}</td>
+          <td>{selectedUserItem2?.userDetails?.mobile}</td>
+          <td>{selectedUserItem2?.userDetails?.profile}</td>
+        </tr>
+      </tbody>
+    </table>
+  )}
+</Modal.Body>
+ 
       </Modal>
 
 

@@ -10,6 +10,8 @@ const News = () => {
 
   const [canWithdraw, setCanWithdraw] = useState(false);
   const [isPlanIncomeActivated, setIsPlanIncomeActivated] = useState(false);
+const [adminMessageToUsers, setadminMessageToUsers] = useState('');
+
 
  const handleWithdrawChange = () => {
   setCanWithdraw((prev) => {
@@ -45,6 +47,7 @@ fetch(`${API_URL}/api/admin/v1/settings`, requestOptions)
     if(result.success == true){
 
       setNews(result?.data)
+       setadminMessageToUsers(result?.data?.adminMessageToUsers);
     }
   })
   .catch((error) => console.error(error));
@@ -69,6 +72,7 @@ const UpdateSetting = () => {
       referralPercentage: Number(news.referralPercentage),
       canWithdraw: news.canWithdraw,
       isPlanIncomeActivated: news.isPlanIncomeActivated,
+      adminMessageToUsers: adminMessageToUsers,
     };
 
     const requestOptions = {
@@ -113,6 +117,7 @@ SettingAPi()
 
           <div className='row g-4'>
             <div className='col-lg-5'>
+                 <label className='mb-3'>Withdrawal Percentage </label>
 <input
   type="text"
   className="form-control"
@@ -128,7 +133,7 @@ SettingAPi()
 
 
             <div className='col-lg-5'>
-
+    <label  className='mb-3'>Referral Percentage </label>
               <input
   type="text"
   className="form-control"
@@ -145,7 +150,7 @@ SettingAPi()
 
            <div className="row mt-4">
       <div className="col-lg-5">
-        <label>Withdraw</label>
+        <label>Withdraw </label>
   <Form.Check
   type="switch"
   id="canWithdraw-switch"
@@ -171,7 +176,12 @@ SettingAPi()
     </div>
 
 
-
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label " >Send messge to users</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1"      value={adminMessageToUsers}
+    rows="3"
+    onChange={(e) => setadminMessageToUsers(e.target.value)}></textarea>
+</div>
 
   <div style={{display:'flex', justifyContent:'center'}}>
           <button className="btn btn-success me-2 w-50" onClick={()=>{UpdateSetting()}}>Update</button>

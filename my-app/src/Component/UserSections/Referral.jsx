@@ -53,14 +53,14 @@ referralAPi()
             <div className='MyTable' style={{width: '100%', overflowX: 'scroll'}} >
        
 
+     
+
 <table class="table text-nowrap"  >
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">First</th>
-      <th scope="col">UserName</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Dob</th>
+      <th scope="col">UserName</th> 
       <th scope="col">Mobile</th>
       <th scope="col">profile</th>
       <th scope="col">walletBalance</th> 
@@ -76,12 +76,11 @@ referralAPi()
         <td scope="row">{index + 1}</td>
         <td>{item?.name}</td>
         <td>{item?.username}</td>
-        <td>{item?.gender}</td>
-        <td>{item?.dob}</td>
+        
         <td>{item?.mobile}</td>
-        <td>{item?.profile}</td>
-        <td>{item?.isBlocked}</td>
+        <td> <img src={'https://avatars.githubusercontent.com/u/131365821?v=4'}  style={{width:'50px'}}/></td>
         <td>{item?.walletBalance}</td>
+        <td>{item?.isBlocked}</td>
         <td>{item?.isDeactivated}</td>
         <td>{item?.status}</td>
       </tr>

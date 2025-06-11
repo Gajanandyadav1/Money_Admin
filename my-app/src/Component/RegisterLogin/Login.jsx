@@ -163,7 +163,7 @@ const Login = () => {
 
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <label className="text-white" style={{ fontSize: '14px' }}>
-                  Don't have an account yet? <span className='text-warning'>Create Account</span>
+                  {/* Don't have an account yet?  <span className='text-warning'>Create Account</span> */}
                 </label>
               </div>
 

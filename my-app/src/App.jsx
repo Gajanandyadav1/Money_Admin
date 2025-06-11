@@ -35,7 +35,7 @@ import Plan from './Component/Plan/Plan';
 import Package2 from './Component/packages/package';
 import PublicRoute from './Component/ProtectedRoute/PublicRoute';
 import ProtectedRoute from './Component/ProtectedRoute/ProtectedRoute';
-
+import Incomes  from './Component/Income/Incomes'
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
@@ -59,34 +59,35 @@ const App = () => {
         <Route path="/" element={<PublicRoute> <Login/></PublicRoute>}/>
 
         <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-        <Route path="/transaction" element={<Transaction/>}/>
-        <Route path="/alluser" element={<AllUser/>}/>
-        <Route path="/UserProfile/:id" element={<WalletBalance/>}/>
-        <Route path="/activeusers" element={<AllActiveUsers/>}/>
-        <Route path="/activein" element={<AllinActive/>}/>
-        <Route path="/blockusers" element={<BlockMember/>}/>
-        <Route path="/payout" element={<PayoutSummary/>}/>
-        <Route path="/SponsorIncome" element={<ReferralIncome/>}/>
-        <Route path="/LevelIncome" element={<TeamIncome/>}/>
-        <Route path="/dailyIncome" element={<DailyIncome/>}/>
-        <Route path="/reward_income" element={<Reward/>}/>
-        <Route path="/fund_transfer" element={<Fund_Transfer/>}/>
-        <Route path="/fund-history" element={<AdminFundTransfer/>}/>
-        <Route path="/View-deposite-request" element={<DepositRequest/>}/>
-        <Route path="/Compelte-deposite-Request" element={<CompleteDepositRequest/>}/>
-        <Route path="/reject-Request" element={<FailedDepositeRequest/>}/>
-        <Route path="/withdraw_pending" element={<PendingRequest/>}/>
-        <Route path="/Compelte-Withdraw" element={<CompelteWithdraw/>}/>
-        <Route path="/reject-Withdraw" element={<RejectWithdraw/>}/>
-        <Route path="/help" element={<HelpCenter/>}/>
-        <Route path="/tree" element={<MamberTree/>}/>
-        <Route path="/updatepassword" element={<ChangePassword/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/transaction" element={ <ProtectedRoute> <Transaction/> </ProtectedRoute>}/>
+        <Route path="/alluser" element={<ProtectedRoute> <AllUser/> </ProtectedRoute>}/>
+        <Route path="/UserProfile/:id" element={<ProtectedRoute> <WalletBalance/> </ProtectedRoute>}/>
+        <Route path="/activeusers" element={<ProtectedRoute> <AllActiveUsers/> </ProtectedRoute>}/>
+        <Route path="/activein" element={<ProtectedRoute> <AllinActive/> </ProtectedRoute>}/>
+        <Route path="/blockusers" element={<ProtectedRoute> <BlockMember/> </ProtectedRoute>}/>
+        <Route path="/payout" element={<ProtectedRoute> <PayoutSummary/> </ProtectedRoute>}/>
+        <Route path="/SponsorIncome" element={<ProtectedRoute> <ReferralIncome/></ProtectedRoute>}/>
+        <Route path="/LevelIncome" element={<ProtectedRoute> <TeamIncome/> </ProtectedRoute>}/>
+        <Route path="/dailyIncome" element={<ProtectedRoute> <DailyIncome/> </ProtectedRoute>}/>
+        <Route path="/reward_income" element={<ProtectedRoute> <Reward/> </ProtectedRoute>}/>
+        <Route path="/fund_transfer" element={<ProtectedRoute> <Fund_Transfer/></ProtectedRoute>}/>
+        <Route path="/fund-history" element={<ProtectedRoute> <AdminFundTransfer/></ProtectedRoute>}/>
+        <Route path="/View-deposite-request" element={<ProtectedRoute> <DepositRequest/> </ProtectedRoute>}/>
+        <Route path="/Compelte-deposite-Request" element={<ProtectedRoute> <CompleteDepositRequest/> </ProtectedRoute>}/>
+        <Route path="/reject-Request" element={<ProtectedRoute> <FailedDepositeRequest/> </ProtectedRoute>}/>
+        <Route path="/withdraw_pending" element={<ProtectedRoute> <PendingRequest/> </ProtectedRoute>}/>
+        <Route path="/Compelte-Withdraw" element={<ProtectedRoute> <CompelteWithdraw/> </ProtectedRoute>}/>
+        <Route path="/reject-Withdraw" element={<ProtectedRoute> <RejectWithdraw/> </ProtectedRoute>}/>
+        <Route path="/help" element={<ProtectedRoute><HelpCenter/> </ProtectedRoute>}/>
+        <Route path="/tree" element={<ProtectedRoute><MamberTree/> </ProtectedRoute>}/>
+        <Route path="/updatepassword" element={<ProtectedRoute> <ChangePassword/> </ProtectedRoute>}/>
+        <Route path="/profile" element={<ProtectedRoute> <Profile/> </ProtectedRoute>}/>
         {/* <Route path="/wallet" element={<WalletSettings/>}/> */}
-        <Route path="/news" element={<News/>}/>
-        <Route path="/User_req" element={<UserRequest/>}/>
-        <Route path="/plan" element={<Plan/>}/>
-        <Route path="/package" element={<Package2/>}/>
+        <Route path="/news" element={<ProtectedRoute> <News/> </ProtectedRoute>}/>
+        <Route path="/User_req" element={<ProtectedRoute> <UserRequest/> </ProtectedRoute>}/>
+        <Route path="/plan" element={<ProtectedRoute><Plan/> </ProtectedRoute>}/>
+        <Route path="/package" element={<ProtectedRoute><Package2/></ProtectedRoute>}/>
+        <Route path="/income" element={<ProtectedRoute><Incomes/></ProtectedRoute>}/>
  
         </Routes> 
     </div>

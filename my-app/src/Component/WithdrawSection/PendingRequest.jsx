@@ -15,6 +15,7 @@ const PendingRequest = () => {
  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 const [data, setdata] = useState()
+const [selectedUser, setSelectedUser] = useState(null);
 
  const handleClose3 = () => setShow3(false);
   const handleShow3 = () => setShow3(true);
@@ -111,21 +112,22 @@ setdata(result?.data?.requests)
 
       <Toaster/>
        <div className="container mt-4">
-      <h5 className="fw-bold mb-4" style={{ borderRadius: '25px', padding: '10px 20px', backgroundColor: '#f8f9fa', display: 'inline-block' }}>  Withdraw Request</h5>
+      <h5 className="fw-bold mb-4">  Withdraw Request</h5>
 
-      <div className="card p-4">
+      <div className="card p-4"  >
          
 
          
 
-        <div className="table-responsive">
+        <div className="table-responsive "   style={{height:'70vh', overflowY:'scroll'}}  >
           <table className="table table-bordered">
             <thead>
               <tr style={{ background: 'linear-gradient(to right, #00c6ff, #0072ff)', color: 'white' }}>
                 <th>SR. No.</th>
                 <th>Amount</th>
-                <th>UPI</th>
-                <th>QR  </th>
+                <th>Ac Number</th>
+                <th>bankName  </th>
+                <th>ifscCode  </th>
                 <th>Remark</th>
                 <th>status</th> 
                 <th>Action</th> 
@@ -136,14 +138,20 @@ setdata(result?.data?.requests)
               {
                 data?.map((res,index)=>{
                   return(
-                   <tr>
+                   <tr className='text-center'>
                 <td>{index+1}</td>
-                <td>{res?.amount}</td>
-                <td>{res?.upi}</td>
-                <td><img src={res?.qr_code}  style={{width:'60px'}}/></td>
+                <td> <del> {res?.amount}</del> <br/> {res?.payableAmount}</td>
+                <td>{res?.userDetails?.userDetails?.accountNumber}</td>
+                <td>{res?.userDetails?.userDetails?.bankName}</td>
+                <td>{res?.userDetails?.userDetails?.ifscCode}</td> 
                 <td>{res?.remark}</td>
                 <td>{res?.status}</td>
-                <td><button className='btn btn-primary'   onClick={()=>{handleShow(res?.id)}}>View More</button>
+                <td>
+                  {/* <button className='btn btn-primary'   onClick={()=>{handleShow(res?.id)}}>View More</button> */}
+                  <button className='btn btn-primary'     onClick={() => {
+    setSelectedUser(res);      // set selected user
+    handleShow(res?.id);       // open modal
+  }}>View More</button>
                 
                  <button className='btn btn-success mx-2'  onClick={() => RequestApprove(res.id, "Approve")}>Approve </button>
 <button   className='btn btn-danger '  onClick={() => {   handleShow3(res?.id); setSelectedIdResion(res.id);  }}>
@@ -191,43 +199,34 @@ setdata(result?.data?.requests)
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+  {selectedUser && (
+    <table className="table table-bordered">
+      <thead>
+        <tr style={{ background: 'linear-gradient(to right, #00c6ff, #0072ff)', color: 'white' }}>
+          <th>SR. No.</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>{selectedUser?.userDetails?.name}</td>
+          <td>{selectedUser?.userDetails?.mobile}</td>
+          <td>
+            <img
+              src='https://avatars.githubusercontent.com/u/131365821?v=4'
+              alt="profile image"
+              style={{ width: '50px' }}
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  )}
+</Modal.Body>
 
-
-
- <table className="table table-bordered">
-            <thead>
-              <tr style={{ background: 'linear-gradient(to right, #00c6ff, #0072ff)', color: 'white' }}>
-                <th>SR. No.</th>
-                <th>Name</th>
-                <th>Mobile</th>
-                <th>Profile</th>
-                  
-              </tr>
-            </thead>
-            <tbody>
-
-              {
-                data?.map((res,index)=>{
-                  return(
-                   <tr>
-                <td>{index+1}</td>
-                <td>{res?.userDetails?.name}</td>
-                <td>{res?.userDetails?.mobile}</td>
-                <td><img src={res?.userDetails?.profile} alt='profile image'  style={{width:'60px'}}/></td>
-               
-              
-              </tr>
-                  )
-                })
-              }
-              
-            </tbody>
-           
-          </table>
-
-
-
-        </Modal.Body>
       
       </Modal>
 

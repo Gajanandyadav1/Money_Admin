@@ -7,7 +7,8 @@ import Table from 'react-bootstrap/Table';
 
 const IncomeDetails = ({ userId }) => {
 
-     
+    const [selectedUser, setSelectedUser] = useState(null);
+ 
     // alert({userId})
       const [show, setShow] = useState(false);
 
@@ -174,7 +175,7 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-12'>
-
+  <div className='MyTable' style={{width: '100%', overflowX: 'scroll'}} >
                         <table className="table text-nowrap">
   <thead className="thead-light">
     <tr>
@@ -195,7 +196,9 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
           <td>₹{item?.amount}</td>
           <td>{item?.remark}</td>
           <td>{new Date(item?.createdAt).toLocaleDateString()}</td>
-          <td><button className='btn btn-primary' onClick={()=>{handleShow(item?.id)}}>View More</button></td>
+          {/* <td><button className='btn btn-primary' onClick={()=>{handleShow(item?.id)}}>View More</button></td> */}
+          <td><button className='btn btn-primary'   onClick={() => {
+                       setSelectedUser(item);    handleShow(item?.id);  }}>View More</button></td>
         </tr>
       ))
     ) : (
@@ -207,6 +210,7 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
     )}
   </tbody>
 </table>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -227,50 +231,47 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
 
        <Modal show={show} onHide={handleClose} size='xl'>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-
-            <Table striped bordered hover>
+      <Modal.Body>
+  {selectedUser && (
+    <Table striped bordered hover>
       <thead>
-        <tr> 
+        <tr>
           <th>#</th>
-          <th> Name</th>
-          <th>description</th>
-          <th>price</th>
-          <th>duration</th>
-          <th>dailyIncome</th>
-          <th>totalIncome</th>
-          <th>requiredReferrals</th> 
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Duration</th>
+          <th>Daily Income</th>
+          <th>Total Income</th>
+          <th>Required Referrals</th>
           <th>Date</th>
         </tr>
       </thead>
       <tbody>
-
         {
-           planIncome?.map((item, index)=>{
-            return (
-           <tr>
-          <td>{index+1}</td>
-          <td>{item?.planDetails?.name}</td>
-          <td>{item?.planDetails?.description}</td>
-          <td>{item?.planDetails?.price}</td>
-          <td>{item?.planDetails?.duration}</td>
-          <td>{item?.planDetails?.dailyIncome}</td>
-          <td>{item?.planDetails?.totalIncome}</td>
-          <td>{item?.planDetails?.requiredReferrals}</td>
-          <td>{item?.planDetails?.createdAt}</td> 
-          
-        </tr>
-            )
-           }) 
+          planIncome
+            ?.filter(item => item?.id === selectedUser?.id) // 🔍 Only show selected item
+            .map((item, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{item?.planDetails?.name}</td>
+                <td>{item?.planDetails?.description}</td>
+                <td>₹{item?.planDetails?.price}</td>
+                <td>{item?.planDetails?.duration} Days</td>
+                <td>₹{item?.planDetails?.dailyIncome}</td>
+                <td>₹{item?.planDetails?.totalIncome}</td>
+                <td>{item?.planDetails?.requiredReferrals}</td>
+                <td>{new Date(item?.planDetails?.createdAt).toLocaleDateString()}</td>
+              </tr>
+            ))
         }
-       
-
       </tbody>
     </Table>
+  )}
+</Modal.Body>
 
-        </Modal.Body>
         
       </Modal>
 
