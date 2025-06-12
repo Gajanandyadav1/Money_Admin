@@ -7,7 +7,7 @@
 
   }
 
- .animated-no-data {
+ .animated-no-data  {
   animation: fadeIn 0.8s ease-in-out;
 }
 @keyframes fadeIn {
