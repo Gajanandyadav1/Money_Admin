@@ -1,0 +1,142 @@
+.custom-card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.custom-header {
+  background-color: #f97316;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+ 
+.teja p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 12px 10px;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc;
+}
+
+.teja p:last-child {
+  border-bottom: none;
+}
+.full-tab-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.tab-header {
+  display: flex;
+  position: relative;
+  border-bottom: 2px solid #ddd;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: #fae9c9;
+  border-radius: 8px;
+}
+
+/* Sliding background (active tab highlight) */
+.tab-highlight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* background: #f97316 !important; */
+  border-radius: 8px;
+  z-index: 0;
+  transition: all 0.8s ease;
+}
+
+.tab-btn {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: none;
+  padding: 14px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.tab-btn.active {
+  transition: all 0.8s ease;
+  color: white;  background: #f97316 !important;
+}
+
+.tab-content {
+  padding: 20px;
+  background: #ffffff; 
+  border-top: none;
+  font-size: 16px;
+  min-height: 150px;
+}
+
+.tab-panel {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .tab-btn {
+    font-size: 14px;
+    padding: 10px 5px;
+  }
+
+  .tab-content {
+    padding: 15px 10px;
+    font-size: 15px;
+  }
+  .tab-btn{
+    padding: 8px 30px !important;
+  }
+  .history-table{
+    width: 100% !important;
+    overflow-x: scroll !important;
+  }
+}
+.no-data-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #888;
+}
+
+.tab-btn.active {
+  font-weight: bold;
+  /* border-bottom: 2px solid #f97316;   */
+}
+
+/* .tab-highlight {
+  transition: all 0.3s ease;
+  height: 2px;
+  background-color: #007bff;
+  position: absolute;
+  bottom: 0;
+} */
+
+
+@media (max-width:768px) {
+  
+  .searchinputbox{
+    width: 100% !important;
+  }
+}
