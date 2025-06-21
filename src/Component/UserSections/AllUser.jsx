@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'; 
-import { API_URL } from '../../env';
+import { API_URL, image_URL } from '../../env';
 import { useNavigate } from 'react-router-dom';
 import '../../App.css'
 import toast, { Toaster } from 'react-hot-toast';
@@ -195,7 +195,7 @@ const handleChangePassword = () => {
                   <td>{user?.mobile}</td>
                   <td>
                     <img
-                      src="https://avatars.githubusercontent.com/u/131365821?v=4"
+                      src={user?.profile ? `${image_URL}/${user.profile}` : "https://avatars.githubusercontent.com/u/131365821?v=4"}
                       style={{ width: "50px", borderRadius: "10px" }}
                     />
                   </td>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL } from '../../env';
+import { API_URL, image_URL } from '../../env';
 import { useParams } from 'react-router-dom';
 
 const Referral = () => {
@@ -85,7 +85,10 @@ referralAPi()
         <td>{item?.username}</td>
         
         <td>{item?.mobile}</td>
-        <td> <img src={'https://avatars.githubusercontent.com/u/131365821?v=4'}  style={{width:'50px'}}/></td>
+        <td>
+           <img 
+            src={item?.profile ? `${image_URL}/${item?.profile}` : "https://avatars.githubusercontent.com/u/131365821?v=4"}
+           style={{width:'50px'}}/></td>
         <td>{item?.walletBalance}</td>
         <td>{item?.isBlocked}</td>
         <td>{item?.isDeactivated}</td>

@@ -49,11 +49,7 @@ const [totalPages, setTotalPages] = useState(1);
   };
 
 
-
-
-
-
-
+ 
 
 
 
@@ -85,9 +81,42 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
       console.log(error)  
     }
   }
+
+
+const [achievements, setAchievements] = useState([]);
+
+  const RankIncome =()=>{
+    try {
+        const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch(`${API_URL}/api/admin/v1/users/${userId}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) =>{
+        if(result?.success == true){
+          setAchievements(result?.data?.achievements || []);
+        }   
+  })
+  .catch((error) => console.error(error));
+    } catch (error) {
+      console.log(error)  
+    }
+  }
+
+
+
+
+
   useEffect(() => {
     referralAPi();
     PlanIncome();
+    RankIncome()
   }, []);
 
 
@@ -103,9 +132,10 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
       {/* Tabs */}
       <Tabs value={activeTab} onChange={handleChange} >
         <Tab label="Reffrels"   style={{textTransform: 'capitalize', fontSize:'18px'}}/>
-        <Tab label="Plan Income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
-        <Tab label="daily income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
-        <Tab label="reward income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
+        <Tab label="Daily Income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
+        <Tab label="Rewards income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
+        <Tab label="Rank income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
+        <Tab label="Salary income"  style={{textTransform: 'capitalize', fontSize:'18px'}}/>
       </Tabs>
 
       {/* Tab Panels */}
@@ -264,17 +294,69 @@ fetch(`${API_URL}/api/admin/v1/users/get/plan-incomes?userId=${userId}`, request
                         <table className="table text-nowrap">
   <thead className="thead-light">
     <tr>
-      <th>#</th>
-      <th>User Id</th>
-      <th>Name</th> 
-      <th>Mobile</th>
-      <th>Reward</th> 
+      <th>Sr.No.</th>
+      <th>Rank Name</th>
+      <th>Amount</th> 
+      <th>Date </th> 
     </tr>
   </thead>
   <tbody>
-   <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
-          No data found
+    {achievements.length > 0 ? (
+      achievements.map((item, index) => (
+        <tr key={item.id}>
+          <td style={{ padding: "8px", textAlign: "center" }}>{index + 1}</td>
+          <td style={{ padding: "8px" }}>{item.packageDetails?.name || "-"}</td> 
+          <td style={{ padding: "8px" }}>{item.amount}</td> 
+          <td style={{ padding: "8px" }}>
+            {new Date(item.createdAt).toLocaleDateString()}
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="6" style={{ textAlign: "center", padding: "10px" }}>
+          No achievements found.
         </td>
+      </tr>
+    )}
+  </tbody>
+</table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>}
+
+
+
+
+
+
+
+            
+            {activeTab === 4 &&  <div>
+            
+            <div className='container'>
+                <div className='row'>
+                    <div className='col-lg-12'>
+  <div className='MyTable' style={{width: '100%', overflowX: 'scroll'}} >
+                        <table className="table text-nowrap">
+  <thead className="thead-light">
+    <tr>
+       <th>Sr.No.</th> 
+       <th>Id</th> 
+              <th>Amount</th> 
+              <th>Date</th>   
+    </tr>
+  </thead>
+  <tbody>
+   
+      <tr>
+        <td colSpan="6" style={{ textAlign: "center", padding: "10px" }}>
+          No Data found.
+        </td>
+      </tr>
+     
   </tbody>
 </table>
                     </div>

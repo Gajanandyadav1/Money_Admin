@@ -1,5 +1,5 @@
 import React, {   useEffect, useState } from 'react'; 
-import { API_URL } from '../../env';
+import { API_URL, image_URL } from '../../env';
 import '../../App.css';
 import Referral from './Referral';
 import { useParams } from 'react-router-dom';
@@ -73,12 +73,15 @@ referralAPi()
            <div className="profile-container">
       <div className="profile-card">
         <div className="header">
-          <img src={referralData?.profile} alt="profile" className="avatar" />
+         
+          <img
+             src={referralData?.profile ? `${image_URL}/${referralData.profile}` : "https://avatars.githubusercontent.com/u/131365821?v=4"}
+           alt="profile" className="avatar"  style={{width:'120px', height:'100px'}}/>
           <div>
             <h4>{referralData?.name}</h4>
             {/* <p>yourname@gmail.com</p> */}
           </div>
-          <button className="close-btn">×</button>
+          <button className="close-btn" style={{opacity:'0'}}>×</button>
         </div>
 
         <hr />

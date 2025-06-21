@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { API_URL } from '../../env';
+import { API_URL, image_URL } from '../../env';
 import Form from 'react-bootstrap/Form';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -107,6 +107,50 @@ const UpdateSetting = () => {
 SettingAPi()
   },[])
 
+ 
+  const fileInputRef = useRef(null);
+  const [fileName, setFileName] = useState('');
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setFileName(file.name);
+
+      const formData = new FormData();
+      formData.append('qr_code', file);
+
+      try {
+        const response = await fetch(`${API_URL}/api/admin/v1/settings/qr`, {
+          method: 'PATCH',
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (result.success == true) {
+          toast.success(result.message );
+          SettingAPi()
+
+          setTimeout(()=>{
+setFileName('')
+          },[3000])
+        } else {
+          toast.error(result.message || 'Something went wrong!');
+          console.error('API Error:', result);
+        }
+      } catch (error) {
+        toast.error('Network error occurred!');
+        console.error('Network Error:', error);
+      }
+    }
+  };
+
   return (
     <div className="container mt-5">
       <Toaster/>
@@ -197,9 +241,30 @@ SettingAPi()
       <div className="col-lg-3 mt-4">
          <h6   className='text-center'>QR Code </h6>
    
-     <img src={news?.qr_code} style={{width:'100%'}}/>
+     <img  src={news?.qr_code ? `${image_URL}/${news.qr_code}` : "https://avatars.githubusercontent.com/u/131365821?v=4"}
+     style={{width:'100%'}}/>
 
+
+
+   <div className='mt-4'>
+      {fileName && (
+        <p><strong>Uploaded File:</strong> {fileName}</p>
+      )}
+
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        onChange={handleFileChange}
+      />
+
+      <button className='btn btn-primary p-2' onClick={handleButtonClick}>
+        Update Qr_code
+      </button>
+    </div>
       </div>
+
 
 
 

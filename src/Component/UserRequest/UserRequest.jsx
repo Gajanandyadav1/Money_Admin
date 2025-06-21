@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { API_URL } from '../../env';
+import { API_URL, image_URL } from '../../env';
 import '../../App.css'
 import '../FundSection/Fund.css'
 
@@ -20,6 +20,7 @@ const [show3, setShow3] = useState(false);
 const [selectedPlanItem, setSelectedPlanItem] = useState(null);
 const [selectedUserItem, setSelectedUserItem] = useState(null);
 const [selectedUserItem2, setSelectedUserItem2] = useState(null);
+const [fullImage, setFullImage] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -81,8 +82,8 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
         fetchData();  
 
         setTimeout(()=>{
-          handleShow3()
-          setrejectionReason('')
+           handleClose3()
+          setrejectionReason(' ')
         },1000)
     }
     else{ 
@@ -131,18 +132,74 @@ fetch(`${API_URL}/api/admin/v1/userpurchases/requests`, requestOptions)
                 <td>₹ {item.planDetails?.price}</td>
                 <td>{item.utr} </td>
                <td>
+<td>
   <img
-    src={item.purchaseEvidence}
-    alt="Proof"
-    width="60"
-    height="40"
-    style={{ objectFit: 'cover', borderRadius: '5px' }}
+    src={
+      item?.purchaseEvidence && item.purchaseEvidence !== "null"
+        ? `${image_URL}/${item.purchaseEvidence}`
+        : "https://avatars.githubusercontent.com/u/131365821?v=4"
+    }
+    onError={(e) => {
+      e.target.onerror = null;
+      e.target.src = "https://avatars.githubusercontent.com/u/131365821?v=4";
+    }}
+    onClick={() =>
+      setFullImage(
+        item?.purchaseEvidence && item.purchaseEvidence !== "null"
+          ? `${image_URL}/${item.purchaseEvidence}`
+          : "https://avatars.githubusercontent.com/u/131365821?v=4"
+      )
+    }
+    alt="purchase evidence"
+    style={{
+      width: "60px",
+      height: "60px",
+      objectFit: "cover",
+      borderRadius: "10px",
+      cursor: "pointer",
+    }}
   />
+
+  {fullImage && (
+  <div
+    onClick={() => setFullImage(null)}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 9999,
+      cursor: "zoom-out",
+    }}
+  >
+    <img
+      src={fullImage}
+      alt="Full View"
+      style={{
+        maxWidth: "90%",
+        maxHeight: "90%",
+        borderRadius: "8px",
+        boxShadow: "0 0 20px rgba(255,255,255,0.3)",
+      }}
+    />
+  </div>
+)}
+
+</td>
+
+
+
 </td>
 
       <td >  {item?.status}  </td>
 
-      <td >  <button className='btn btn-success'  onClick={() => RequestApprove(item.id, "Approve")}>Approve </button>
+      <td >  <button className='btn btn-success mx-2'  onClick={() => RequestApprove(item.id, "Approve")}>Approve </button>
+      
 <button   className='btn btn-danger ms-2'  onClick={() => {   handleShow3(item?.id); setSelectedIdResion(item.id);  }}>
   Reject
 </button>

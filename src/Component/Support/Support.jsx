@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
-import { API_URL } from '../../env'; 
+import { API_URL, image_URL } from '../../env'; 
 import Table from 'react-bootstrap/Table';
 import {  Pagination, Spinner } from "react-bootstrap";
 
@@ -23,6 +23,27 @@ const Support = () => {
 
 const [selectedTicketId, setSelectedTicketId] = useState(null);
 const [PendingData, setPendingData] = useState([]);
+
+ 
+
+
+const [assetImages, setAssetImages] = useState([]);
+const [show8, setShow8] = useState(false);
+
+const handleClose8 = () => setShow8(false);
+
+
+const [assetImages2, setAssetImages2] = useState([]);
+const [show9, setShow9] = useState(false);
+
+const handleClose9 = () => setShow9(false);
+
+const [selectedImage, setSelectedImage] = useState(null);
+const [previewImage, setPreviewImage] = useState(null);
+
+
+
+
 const [show2, setShow2] = useState(false);
 
 const handleShow2 = (ticketObj) => {
@@ -82,6 +103,7 @@ fetch(`${API_URL}/api/admin/v1/tickets`, requestOptions)
                
         //  GetResolved()
          GetPending()
+         handleClose2()
     }
     else{
        toast.error(result?.error?.explanation)
@@ -155,8 +177,7 @@ setTotalPages(result.totalPages || 1); // ✅ based on API response
             setCurrentPage(page); 
 
               handleClose()
-TicketGetAPi()
-GetResolved()
+ 
             setTimeout(() => {
               setresole('') 
             }, 4000);
@@ -169,6 +190,9 @@ GetResolved()
     }
 
 
+
+
+    const [Resolved, setResolved] =useState([])
     const GetResolved = (page = 1) =>{
       try {
         const myHeaders = new Headers();
@@ -184,7 +208,7 @@ fetch(`${API_URL}/api/admin/v1/tickets?page=${page}&status=false&username=${sear
   .then((response) => response.json())
   .then((result) => {
     if(result.success == true){
-setPendingData(result?.data?.requests)
+setResolved(result?.data?.requests)
 setTotalPages(result.totalPages || 1); // ✅ based on API response
             setCurrentPage(page); 
           
@@ -271,50 +295,90 @@ setTotalPages(result.totalPages || 1); // ✅ based on API response
                         <th>#</th>
                         <th>TicketId</th>
                         <th>UserId</th>
-                        <th>Assets</th>
                         <th>Category</th>
                         <th>Description</th>
                         <th>Response</th>
                         <th>Status</th>
+                        <th>Assets</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {PendingData?.map((res, index) => (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{res?.ticketId}</td>
-                               <td>{res?.userDetails.username}</td>
-                          <td>{res?.assets}</td>
-                          <td>{res?.category}</td>
-                          <td>{res?.description}</td>
-                          <td>{res?.response}</td>
-                          <td>
-                            {res?.status === false
-                              ? "Pending"
-                              : res?.status === true
-                              ? "Resolved"
-                              : "-"}
-                          </td>
-                          <td>
-                            <div  style={{display:'flex'}}> 
-                            <button
-                              className="btn btn-primary text-nowrap"
-                              onClick={() => handleShow(res)}
-                            >
-                                User Details
-                            </button>
-                            <button
-                              className="btn btn-primary mx-2"
-                              onClick={() => handleShow2(res)}
-                            >
-                              Resolve
-                            </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+                   <tbody>
+  {PendingData && PendingData.length > 0 ? (
+    PendingData.map((res, index) => (
+      <tr key={index}>
+        <td>{index + 1}</td>
+        <td>{res?.ticketId}</td>
+        <td>{res?.userDetails.username}</td>
+      
+        <td>{res?.category}</td>
+        <td>{res?.description}</td>
+        <td>{res?.response}</td>
+        <td>
+          {res?.status === true
+            ? "Pending"
+            : res?.status === false
+            ? "Resolved"
+            : "-"}
+        </td>
+
+
+        <td>
+  <button
+    className="btn btn-primary"
+   onClick={() => {
+  let assetArray = [];
+
+  if (typeof res.assets === "string") {
+    try {
+      assetArray = JSON.parse(res.assets);
+    } catch (e) {
+      console.error("Error parsing assets JSON:", e);
+      assetArray = [];
+    }
+  } else if (Array.isArray(res.assets)) {
+    assetArray = res.assets;
+  }
+
+  const filenames = assetArray.map((filename) => filename.trim());
+
+  setAssetImages(filenames);
+  setShow8(true);
+}}
+
+  >
+    Assets
+  </button>
+</td>
+
+
+        <td>
+          <div style={{ display: 'flex' }}>
+            <button
+              className="btn btn-primary text-nowrap"
+              onClick={() => handleShow(res)}
+            >
+              User Details
+            </button>
+            <button
+              className="btn btn-primary mx-2"
+              onClick={() => handleShow2(res)}
+            >
+              Resolve
+            </button>
+          </div>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="9" className="text-center">
+        No Data Found
+      </td>
+    </tr>
+  )}
+</tbody>
+
                   </Table>
                 </div>
 
@@ -378,43 +442,79 @@ setTotalPages(result.totalPages || 1); // ✅ based on API response
                         <th>#</th>
                         <th>TicketId</th>
                         <th>UserId</th>
-                        <th>Assets</th>
                         <th>Category</th>
                         <th>Description</th>
                         <th>Response</th>
+                        <th>Assets</th>
                         <th>Status </th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {PendingData?.map((res, index) => (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{res?.ticketId}</td>
-                          <td>{res?.userDetails.username}</td>
-                          <td>{res?.assets}</td>
-                          <td>{res?.category}</td>
-                          <td>{res?.description}</td>
-                          <td>{res?.response}</td>
-                          <td >
-                            {res?.status === true
-                              ? "Pending   "
-                              : res?.status === false
-                              ? "Resolved"
-                              : "-"}
-                          </td>
-                          <td>
-                            <button
-                              className="btn btn-primary text-nowrap"
-                              onClick={() => handleShow(res)}
-                            >
-                              View Details
-                            </button>
-                           
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
+                   <tbody>
+  {Resolved && Resolved.length > 0 ? (
+    Resolved.map((res, index) => (
+      <tr key={index}>
+        <td>{index + 1}</td>
+        <td>{res?.ticketId}</td>
+        <td>{res?.userDetails.username}</td>
+        <td>{res?.category}</td>
+        <td>{res?.description}</td>
+        <td>{res?.response}</td>
+        <td>
+          {res?.status === true
+            ? "Pending"
+            : res?.status === false
+            ? "Resolved"
+            : "-"}
+        </td>
+
+          
+        <td>
+  <button
+    className="btn btn-primary"
+   onClick={() => {
+  let assetArray = [];
+
+  if (typeof res.assets === "string") {
+    try {
+      assetArray = JSON.parse(res.assets);
+    } catch (e) {
+      console.error("Error parsing assets JSON:", e);
+      assetArray = [];
+    }
+  } else if (Array.isArray(res.assets)) {
+    assetArray = res.assets;
+  }
+
+  const filenames = assetArray.map((filename) => filename.trim());
+
+  setAssetImages2(filenames);
+  setShow9(true);
+}}
+
+  >
+    Assets
+  </button>
+</td>
+        <td>
+          <button
+            className="btn btn-primary text-nowrap"
+            onClick={() => handleShow(res)}
+          >
+            View Details
+          </button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="9" className="text-center">
+        No Data Found
+      </td>
+    </tr>
+  )}
+</tbody>
+
                   </Table>
                 </div>
 
@@ -461,60 +561,7 @@ setTotalPages(result.totalPages || 1); // ✅ based on API response
       <div className='container mt-4'>
         <div className='row'>
             <div className='col-lg-12'>
-
-                   {/* <div className=" history-table"   >
-        <Table  striped   hover   className=' text-dark  text-center'>
-          <thead  className='bg-warning text-dark  text-center'>
-      
-        <tr>
-          <th>#</th>
-          <th>TicketId</th>
-          <th>Assets</th>
-          <th>category</th>
-          <th>Description</th>
-          <th>response</th>
-          <th>status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-     
-       
-
-       {
-        tickets?.map((res,index)=>{
-
-            return(
-                 <tr>
-          <td>{index+1}</td> 
-          <td>{res?.ticketId}</td> 
-          <td>{res?.assets}</td> 
-          <td>{res?.category}</td> 
-          <td>{res?.description}</td> 
-          <td>{res?.response}</td> 
-      <td>  {res?.status === true  ? "Pending"  : res?.status === false  ? "Resolve"   : "-"}</td>
-          <td>    <button className="btn btn-primary" onClick={() => handleShow(res)}>
-                  View Details
-                </button> 
-                
-                 <button className="btn btn-primary mx-2" onClick={() => handleShow2(res)}>
-            Resole
-          </button>
-                
-                </td> 
-
-          
-          
-        </tr>
-            )
-        })
-       }
-       
-      </tbody>
-    </Table>
-
-</div> */}
-
+ 
  
 
  
@@ -599,6 +646,154 @@ setTotalPages(result.totalPages || 1); // ✅ based on API response
     </div>
   </Modal.Body>
 </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {/* pending Asset Image  */}
+    
+    
+    
+   <Modal show={show8} onHide={handleClose8} size="xl" centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Ticket Assets</Modal.Title>
+  </Modal.Header>
+<Modal.Body>
+  {assetImages.length > 0 ? (
+    <div className="d-flex flex-wrap gap-4 justify-content-around">
+      {assetImages.map((filename, index) => (
+        <img
+          key={index}
+          src={`${image_URL}${filename}`}
+          alt={`asset-${index}`}
+          style={{
+            width: "300px",
+            height: "200px",
+            objectFit: "cover",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+          onClick={() => setPreviewImage(filename)}
+        />
+      ))}
+    </div>
+  ) : (
+    <p>No assets found for this ticket.</p>
+  )}
+</Modal.Body>
+
+   
+</Modal>
+
+{previewImage && (
+  <div
+    onClick={() => setPreviewImage(null)}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      zIndex: 9999,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0, 0, 0, 0.9)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "zoom-out",
+    }}
+  >
+    <img
+      src={`${image_URL}${previewImage}`}
+      alt="Full Preview"
+      style={{
+        width: "80vw",
+        height: "60vh",
+        objectFit: "contain",
+      }}
+    />
+  </div>
+)}
+
+
+    {/* Resolved Asset Image  */}
+    
+    
+    
+   <Modal show={show9} onHide={handleClose9} size="xl" centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Ticket Assets</Modal.Title>
+  </Modal.Header>
+<Modal.Body>
+  {assetImages2.length > 0 ? (
+    <div className="d-flex flex-wrap gap-4 justify-content-around">
+      {assetImages2.map((filename, index) => (
+        <img
+          key={index}
+          src={`${image_URL}${filename}`}
+          alt={`asset-${index}`}
+          style={{
+            width: "300px",
+            height: "200px",
+            objectFit: "cover",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+          onClick={() => setPreviewImage(filename)}
+        />
+      ))}
+    </div>
+  ) : (
+    <p>No assets found for this ticket.</p>
+  )}
+</Modal.Body>
+
+
+   
+</Modal>
+
+{previewImage && (
+  <div
+    onClick={() => setPreviewImage(null)}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      zIndex: 9999,
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "rgba(0, 0, 0, 0.9)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "zoom-out",
+    }}
+  >
+    <img
+      src={`${image_URL}${previewImage}`}
+      alt="Full Preview"
+      style={{
+        width: "80vw",
+        height: "60vh",
+        objectFit: "contain",
+      }}
+    />
+  </div>
+)}
+
 
 </>
 
