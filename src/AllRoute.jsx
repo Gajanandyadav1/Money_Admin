@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from  './Component/Home'; 
 import SideBar from './Component/SideBar' ;
-import App from './App' ;
+import App from './App'  ;
 
 
 
