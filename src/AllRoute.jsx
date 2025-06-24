@@ -15,7 +15,7 @@ const AllRoute = () => {
 
       
 {/* <App/> */}
-      {/* <div className='container-fluid'>
+      {/* <div className='container-fluid' >
         <div className='row'>
           <div className='col-lg-2 col-md-2 col-sm-12'>
             <SideBar/>
