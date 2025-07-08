@@ -21,7 +21,7 @@ const AllRoute = () => {
             <SideBar/>
           </div>
 
-          <div className='col-lg-10 col-md-10 col-sm-12'>
+          <div className='col-lg-10 col-md-10 col-sm-12' >
               <BrowserRouter>
          <Routes>
         <Route path="/" element={<Home/>}>
