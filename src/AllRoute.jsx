@@ -24,7 +24,7 @@ const AllRoute = () => {
           <div className='col-lg-10 col-md-10 col-sm-12' >
               <BrowserRouter>
          <Routes>
-        <Route path="/" element={<Home/>}>
+        <Route path="/" element={<Home/>} >
         </Route>
         </Routes>
      </BrowserRouter>
