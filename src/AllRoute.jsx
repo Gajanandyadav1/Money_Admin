@@ -6,7 +6,7 @@ import App from './App'  ;
 
 
 
-const AllRoute = () => {
+const AllRoute = () => { 
   return (
     <div>
 
