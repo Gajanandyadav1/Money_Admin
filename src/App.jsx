@@ -26,7 +26,7 @@ import Profile from './Component/Profile/profile';
 import WalletSettings from './Component/Setting/WalletSettings'; 
 import News from './Component/Setting/News';
 import Login from './Component/RegisterLogin/Login';
-import UserRequest from './Component/UserRequest/UserRequest';
+import UserRequest from './Component/UserRequest/UserRequest' ;
 import Plan from './Component/Plan/Plan';
 import Package2 from './Component/packages/package';
 import PublicRoute from './Component/ProtectedRoute/PublicRoute';
