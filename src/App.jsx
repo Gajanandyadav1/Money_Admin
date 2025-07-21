@@ -8,7 +8,7 @@ import Transaction from './Component/Transaction';
 import AllUser from './Component/UserSections/AllUser';
 import WalletBalance from './Component/UserSections/walletBalance';
 import AllActiveUsers from './Component/UserSections/AllActiveUsers';
-import AllinActive from './Component/UserSections/AllinActive' ;
+import AllinActive from './Component/UserSections/AllinActive'  ;
 import BlockMember from './Component/UserSections/BlockMember' ;
 import PayoutSummary from './Component/PayoutSum/PayoutSummary' ; 
 import Fund_Transfer from './Component/FundSection/Fund_Transfer';
