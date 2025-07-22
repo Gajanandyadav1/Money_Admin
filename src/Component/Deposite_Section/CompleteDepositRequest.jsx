@@ -6,7 +6,7 @@ const CompleteDepositRequest = () => {
   return (
     <div className="container mt-4 complete-deposit-container">
       <div className="header mb-3">
-        <button className="btn btn-light shadow-sm rounded-pill px-4 fw-semibold">
+        <button className="btn btn-light shadow-sm rounded-pill px-4 fw-semibold" >
           Complete Deposite Request
         </button>
       </div>
